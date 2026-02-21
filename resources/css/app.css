@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+  --font-sans: 'Inter', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-textPrimary: var(--color-textPrimary);
+  --color-textSecondary: var(--color-textSecondary);
+  --color-textWhite: var(--color-textWhite);
+  --color-textBlack: var(--color-textBlack);
+  --color-bgPrimary: var(--color-bgPrimary);
+  --color-bgSecondary: var(--color-bgSecondary);
+  --color-strokePrimary: var(--color-strokePrimary);
+
+  --color-card: var(--color-card);
+  --color-cardHover: var(--color-cardHover);
+  --color-cardDarker: var(--color-cardDarker);
+  --color-inputBg: var(--color-inputBg);
+  --color-dialogBg: var(--color-dialogBg);
+
+  --color-success: var(--color-success);
+  --color-successText: var(--color-successText);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+
+  --color-tagBg: var(--color-tagBg);
+}
+
+@layer base {
+  :root {
+    /* Default Dark Mode */
+    --color-textPrimary: #02b2d0;
+    --color-textSecondary: #728298;
+    --color-textWhite: #ffffff;
+    --color-textBlack: #000000;
+    --color-bgPrimary: #0e162a;
+    --color-bgSecondary: #1d293d;
+    --color-strokePrimary: #09536d;
+
+    --color-card: #111a2c;
+    --color-cardHover: #162032;
+    --color-cardDarker: #0d1422;
+    --color-inputBg: #0b1322;
+    --color-dialogBg: #0c1322;
+
+    --color-success: #1f8a70;
+    --color-successText: #60f5d2;
+    --color-warning: #facc15;
+    --color-warning: #facc15;
+    --color-error: #ef4444;
+
+    --color-tagBg: #1d293d;
+  }
+
+  :root.light {
+    /* Light Mode Overrides - High Contrast */
+    --color-textPrimary: #006b85;
+    /* Much darker teal for readability */
+    --color-textSecondary: #475569;
+    /* Darker slate gray */
+    --color-textWhite: #0f172a;
+    /* Almost black for main text */
+    --color-textBlack: #ffffff;
+    /* White text for "black" slots (rare) */
+
+    --color-bgPrimary: #f8fafc;
+    /* Very light slate */
+    --color-bgSecondary: #e2e8f0;
+    /* Light gray for secondary headers/navs */
+    --color-strokePrimary: #cbd5e1;
+    /* Visible borders */
+
+    --color-card: #ffffff;
+    --color-cardHover: #f1f5f9;
+    /* Slightly darker hover */
+    --color-cardDarker: #f8fafc;
+    --color-inputBg: #ffffff;
+    --color-dialogBg: #ffffff;
+
+    --color-success: #059669;
+    /* Darker green */
+    --color-successText: #064e3b;
+
+    --color-tagBg: #ffffff;
+    /* Pure white for tags in light mode */
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-bgPrimary);
+    color: var(--color-textWhite);
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  #app {
+    min-height: 100vh;
+  }
+}
