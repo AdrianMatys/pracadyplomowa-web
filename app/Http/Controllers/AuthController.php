@@ -40,7 +40,6 @@ class AuthController extends Controller
             'theme' => 'light',
         ]);
 
-        Auth::login($user);
         $user->sendEmailVerificationNotification();
 
         $this->logAction('register', 'Użytkownik zarejestrował się', [], $user->id, $request->name);
