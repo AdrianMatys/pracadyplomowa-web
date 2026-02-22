@@ -33,22 +33,6 @@ const shouldShowHint2 = computed(() => props.failedAttempts >= 10 && hasHint2.va
 const attemptsToHint1 = computed(() => Math.max(0, 5 - props.failedAttempts))
 const attemptsToHint2 = computed(() => Math.max(0, 10 - props.failedAttempts))
 
-const statusMessage = computed(() => {
-  if (shouldShowHint2.value) return null
-
-  if (shouldShowHint1.value) {
-    if (hasHint2.value) {
-      return t('hint.hint2AvailableIn', { count: attemptsToHint2.value })
-    }
-    return null
-  }
-
-  if (hasHint1.value) {
-    return t('hint.hint1AvailableIn', { count: attemptsToHint1.value })
-  }
-
-  return null
-})
 
 const toggleOpen = () => {
   isOpen.value = !isOpen.value
@@ -79,13 +63,10 @@ const toggleOpen = () => {
           <p class="text-sm text-gray-500">
             Po <strong>{{ attemptsToHint1 }}</strong> {{ attemptsToHint1 === 1 ? 'błędnej próbie' : 'błędnych próbach' }} odblokuję pierwszą wskazówkę.
           </p>
-          <p v-if="hasHint2" class="text-xs text-gray-400 mt-1">
-            Dostępna będzie też druga wskazówka po 10 błędach.
-          </p>
         </div>
 
-        <p v-if="statusMessage" class="text-xs font-semibold italic text-gray-400 pt-1 border-t border-gray-100">
-          {{ statusMessage }}
+        <p v-if="shouldShowHint1 && !shouldShowHint2 && hasHint2" class="text-xs font-semibold italic text-gray-400 pt-1 border-t border-gray-100">
+          {{ t('hint.hint2AvailableIn', { count: attemptsToHint2 }) }}
         </p>
       </div>
 

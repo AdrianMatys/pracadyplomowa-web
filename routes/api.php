@@ -19,7 +19,7 @@ Route::post('/auth/reset-password', [\App\Http\Controllers\PasswordResetControll
 Route::get('/auth/reset-token/{token}', [\App\Http\Controllers\PasswordResetController::class, 'getEmailByToken']);
 
 Route::get('/auth/verify-email/{id}/{hash}', [\App\Http\Controllers\EmailVerificationController::class, 'verify'])
-    ->middleware(['auth:sanctum', 'signed'])
+    ->middleware(['signed'])
     ->name('verification.verify');
 
 Route::post('/auth/resend-verification', [\App\Http\Controllers\EmailVerificationController::class, 'resend'])

@@ -13,19 +13,21 @@ class EmailVerificationController extends Controller
     {
         $user = \App\Models\User::findOrFail($id);
 
+        $frontendUrl = rtrim(config('app.url', 'http://localhost:8000'), '/');
+
         if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
-            return response()->json(['message' => 'Invalid verification link.'], 403);
+            return redirect($frontendUrl . '/logowanie?verified=0&error=invalid_link');
         }
 
         if ($user->hasVerifiedEmail()) {
-            return response()->json(['message' => 'Email already verified.']);
+            return redirect($frontendUrl . '/logowanie?verified=1');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return response()->json(['message' => 'Email verified successfully.']);
+        return redirect($frontendUrl . '/logowanie?verified=1');
     }
 
     public function resend(Request $request): JsonResponse

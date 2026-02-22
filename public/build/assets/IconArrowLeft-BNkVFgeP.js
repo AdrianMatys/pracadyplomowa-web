@@ -1,1 +1,0 @@
-import{_ as e}from"./main-AnIw5FzX.js";import{a as r,o as t,b as n}from"./vendor-lIf_UB2E.js";const s={},c={viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"};function a(i,o){return t(),r("svg",c,[...o[0]||(o[0]=[n("path",{d:"M15 18l-6-6 6-6","stroke-linecap":"round","stroke-linejoin":"round"},null,-1)])])}const d=e(s,[["render",a]]);export{d as I};

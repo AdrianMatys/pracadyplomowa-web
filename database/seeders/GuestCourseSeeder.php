@@ -32,8 +32,8 @@ class GuestCourseSeeder extends Seeder
                     'initial_code' => "<!-- Napisz kod HTML poniżej -->\n",
                     'expected_output' => '<h1>Witaj Świecie</h1>',
                     'validation_regex' => '/<h1>\s*Witaj Świecie\s*<\/h1>/i',
-                    'hint' => 'Użyj tagów <h1> i </h1>.',
-                    'hint_2' => 'Wpisz <h1>Witaj Świecie</h1>',
+                    'hint' => 'Nagłówek pierwszego poziomu otacza tekst znacznikami otwierającym i zamykającym. Jaki tag odpowiada za nagłówek H1?',
+                    'hint_2' => 'Wzorzec: <h1>Twój tekst tutaj</h1> — wstaw odpowiednią treść między znaczniki.',
                     'judge0_language_id' => null, // HTML check via regex/preview
                     'preview_type' => 'html'
                 ]
@@ -47,9 +47,9 @@ class GuestCourseSeeder extends Seeder
                     'initial_code' => "<?php\n// Wypisz tekst poniżej\n",
                     'expected_output' => 'Działam!',
                     'validation_regex' => '/echo\s*[\'"]Działam![\'"]\s*;/i',
-                    'hint' => 'Wpisz: echo "Działam!";',
+                    'hint' => 'Komenda echo wypisuje tekst na ekran. Tekst musi być otoczony cudzysłowami, a instrukcja kończy się średnikiem.',
                     'judge0_language_id' => 68, // PHP
-                    'hint_2' => 'Nie zapomnij o średniku na końcu linii.'
+                    'hint_2' => 'Wzorzec: echo "Twój tekst"; — wstaw odpowiednią treść między cudzysłowy.'
                 ]
             ],
             [
@@ -61,9 +61,9 @@ class GuestCourseSeeder extends Seeder
                     'initial_code' => "-- Wybierz wszystko z tabeli users\nSELECT ...",
                     'expected_output' => null,
                     'validation_regex' => '/SELECT\s+\*\s+FROM\s+users/i',
-                    'hint' => 'Użyj gwiazdki * aby wybrać wszystkie kolumny.',
+                    'hint' => 'Gwiazdka (*) w SQL oznacza "wszystkie kolumny". Po FROM podaj nazwę tabeli.',
                     'judge0_language_id' => null, // SQL via regex mostly here or mock
-                    'hint_2' => 'Wpisz: SELECT * FROM users;'
+                    'hint_2' => 'Wzorzec: SELECT [co] FROM [skąd]; — zastąp [co] i [skąd] odpowiednimi wartościami.'
                 ]
             ],
             [
@@ -75,9 +75,9 @@ class GuestCourseSeeder extends Seeder
                     'initial_code' => "// Wypisz 100\n",
                     'expected_output' => '100',
                     'validation_regex' => '/console\.log\(\s*100\s*\)/',
-                    'hint' => 'Wpisz console.log(100);',
+                    'hint' => 'Funkcja console.log() wypisuje wartość w konsoli. Liczbę podajesz bezpośrednio jako argument, bez cudzysłowów.',
                     'judge0_language_id' => 63, // JS
-                    'hint_2' => 'Liczb nie musisz brać w cudzysłów.'
+                    'hint_2' => 'Wzorzec: console.log([wartość]); — wstaw odpowiednią liczbę w miejsce [wartość].'
                 ]
             ]
         ];

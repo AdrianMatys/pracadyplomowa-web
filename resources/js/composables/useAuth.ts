@@ -59,13 +59,9 @@ export const useAuth = () => {
   const register = async (data: { name: string; email: string; password: string; recaptcha_token?: string }) => {
     try {
       await api.get('/sanctum/csrf-cookie')
-      const response = await api.post('/register', data)
-
-      user.value = response.data.user
-      isLoggedIn.value = true
+      await api.post('/register', data)
 
       notify('success', t('common.notifications.registerSuccess'))
-      router.push({ name: 'main' })
     } catch (error) {
       notify('error', t('common.notifications.registerError'))
       throw error
