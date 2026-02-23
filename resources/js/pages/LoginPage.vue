@@ -24,6 +24,7 @@ const isPasswordVisible = ref(false)
 const isLoading = ref(false)
 const errorMessage = ref('')
 const emailUnverified = ref(false)
+const emailVerified = ref(false)
 const resendLoading = ref(false)
 const resendSent = ref(false)
 
@@ -31,6 +32,9 @@ const navLinksList = dashboardData.value?.navLinks ?? []
 
 onMounted(() => {
   loadScript()
+  if (route.query.verified === '1') {
+    emailVerified.value = true
+  }
 })
 
 const handleLoginSubmit = async () => {
@@ -128,7 +132,12 @@ const resendVerification = async () => {
             </div>
           </div>
 
-          <div v-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">
+          <div v-if="emailVerified" class="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-4 text-sm space-y-1">
+            <p class="font-semibold text-emerald-400">{{ t('register.successTitle') }}</p>
+            <p class="text-emerald-300/80">{{ t('register.successMessage') }}</p>
+          </div>
+
+          <div v-else-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">
             ✓ Link weryfikacyjny został wysłany. Sprawdź swoją skrzynkę pocztową.
           </div>
 

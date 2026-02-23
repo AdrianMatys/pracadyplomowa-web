@@ -81,6 +81,8 @@ export const translations = {
       errorEmptyFields: 'Wypełnij wszystkie pola.',
       errorPasswordMismatch: 'Hasła nie są identyczne.',
       errorPasswordLength: 'Hasło musi mieć co najmniej 8 znaków.',
+      successTitle: 'Email zweryfikowany!',
+      successMessage: 'Twoje konto zostało pomyślnie aktywowane. Możesz się teraz zalogować.',
     },
 
     main: {
@@ -582,6 +584,8 @@ export const translations = {
       errorEmptyFields: 'Fill in all fields.',
       errorPasswordMismatch: 'Passwords do not match.',
       errorPasswordLength: 'Password must be at least 8 characters.',
+      successTitle: 'Email verified!',
+      successMessage: 'Your account has been successfully activated. You can now log in.',
     },
 
     main: {

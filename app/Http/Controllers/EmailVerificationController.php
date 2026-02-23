@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class EmailVerificationController extends Controller
 {
-    public function verify(Request $request, string $id, string $hash): JsonResponse
+    public function verify(Request $request, string $id, string $hash): RedirectResponse
     {
         $user = \App\Models\User::findOrFail($id);
 
