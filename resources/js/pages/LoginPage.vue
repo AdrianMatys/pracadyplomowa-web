@@ -62,7 +62,7 @@ const handleLoginSubmit = async () => {
   } catch (error: any) {
     if (error.response?.status === 403 && error.response.data?.email_unverified) {
       emailUnverified.value = true
-      errorMessage.value = 'Twój adres email nie został potwierdzony. Sprawdź skrzynkę pocztową lub wyślij link ponownie.'
+      errorMessage.value = t('login.emailUnverifiedError')
     } else if (error.response?.status === 422) {
       const errors = error.response.data.errors
       if (errors) {
@@ -92,7 +92,7 @@ const resendVerification = async () => {
     errorMessage.value = ''
     emailUnverified.value = false
   } catch {
-    errorMessage.value = 'Nie udało się wysłać emaila. Spróbuj ponownie.'
+    errorMessage.value = t('login.resendError')
   } finally {
     resendLoading.value = false
   }
@@ -133,12 +133,12 @@ const resendVerification = async () => {
           </div>
 
           <div v-if="emailVerified" class="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-4 text-sm space-y-1">
-            <p class="font-semibold text-emerald-400">{{ t('register.successTitle') }}</p>
-            <p class="text-emerald-300/80">{{ t('register.successMessage') }}</p>
+            <p class="font-semibold text-emerald-400">{{ t('register.verifiedTitle') }}</p>
+            <p class="text-emerald-300/80">{{ t('register.verifiedMessage') }}</p>
           </div>
 
-          <div v-else-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">
-            ✓ Link weryfikacyjny został wysłany. Sprawdź swoją skrzynkę pocztową.
+          <div v-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">
+            ✓ {{ t('login.resendSuccess') }}
           </div>
 
           <div v-else-if="errorMessage" class="rounded-lg bg-red-500/10 p-3 text-sm text-red-400 space-y-2">
@@ -150,8 +150,8 @@ const resendVerification = async () => {
               :disabled="resendLoading"
               @click="resendVerification"
             >
-              <IconSpinner v-if="resendLoading" class="h-3 w-3 animate-spin" />
-              {{ resendLoading ? 'Wysyłanie...' : 'Wyślij link weryfikacyjny ponownie →' }}
+               <IconSpinner v-if="resendLoading" class="h-3 w-3 animate-spin" />
+              {{ resendLoading ? t('common.submitting') : t('login.resendLink') }}
             </button>
           </div>
 

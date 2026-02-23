@@ -146,13 +146,13 @@ const handleRegisterSubmit = async () => {
               </svg>
             </div>
             <div>
-              <h2 class="text-2xl font-bold tracking-tight text-white mb-2">{{ t('register.successTitle') || 'Sprawdź swoją skrzynkę' }}</h2>
-              <p class="text-textSecondary">{{ t('register.successMessage') || 'Wysłaliśmy link weryfikacyjny na Twój adres e-mail. Kliknij go, aby aktywować konto i móc się zalogować.' }}</p>
+              <h2 class="text-2xl font-bold tracking-tight text-white mb-2">{{ t('register.verifyEmailTitle') }}</h2>
+              <p class="text-textSecondary">{{ t('register.verifyEmailMessage') }}</p>
             </div>
             
             <div class="pt-4 border-t border-strokePrimary/30">
               <RouterLink :to="{ name: 'login' }" class="flex w-full items-center justify-center rounded-full bg-textPrimary px-6 py-3 text-sm font-semibold text-bgPrimary transition hover:opacity-90">
-                Przejdź do logowania
+                {{ t('register.goToLogin') }}
               </RouterLink>
             </div>
           </div>

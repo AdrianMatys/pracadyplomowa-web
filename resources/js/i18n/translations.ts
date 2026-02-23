@@ -31,6 +31,10 @@ export const translations = {
       noAccount: 'Nie masz jeszcze konta?',
       registerLink: 'Zarejestruj się',
       errorEmptyFields: 'Wprowadź e-mail i hasło.',
+      emailUnverifiedError: 'Twój adres email nie został potwierdzony. Sprawdź skrzynkę pocztową lub wyślij link ponownie.',
+      resendLink: 'Wyślij link weryfikacyjny ponownie →',
+      resendSuccess: 'Link weryfikacyjny został wysłany. Sprawdź swoją skrzynkę pocztową.',
+      resendError: 'Nie udało się wysłać emaila. Spróbuj ponownie.',
     },
 
     forgotPassword: {
@@ -81,8 +85,11 @@ export const translations = {
       errorEmptyFields: 'Wypełnij wszystkie pola.',
       errorPasswordMismatch: 'Hasła nie są identyczne.',
       errorPasswordLength: 'Hasło musi mieć co najmniej 8 znaków.',
-      successTitle: 'Email zweryfikowany!',
-      successMessage: 'Twoje konto zostało pomyślnie aktywowane. Możesz się teraz zalogować.',
+      verifyEmailTitle: 'Sprawdź swoją skrzynkę',
+      verifyEmailMessage: 'Wysłaliśmy link weryfikacyjny na Twój adres e-mail. Kliknij go, aby aktywować konto i móc się zalogować.',
+      verifiedTitle: 'Email zweryfikowany!',
+      verifiedMessage: 'Twoje konto zostało pomyślnie aktywowane. Możesz się teraz zalogować.',
+      goToLogin: 'Przejdź do logowania',
     },
 
     main: {
@@ -287,6 +294,7 @@ export const translations = {
     common: {
       soon: 'Wkrótce',
       loading: 'Ładowanie...',
+      submitting: 'Wysyłanie...',
       error: 'Wystąpił błąd',
       connectionError: 'Błąd połączenia z serwerem',
       cancel: 'Anuluj',
@@ -534,6 +542,10 @@ export const translations = {
       noAccount: "Don't have an account yet?",
       registerLink: 'Sign up',
       errorEmptyFields: 'Enter email and password.',
+      emailUnverifiedError: 'Your email address has not been confirmed. Check your inbox or resend the link.',
+      resendLink: 'Resend verification link →',
+      resendSuccess: 'Verification link has been sent. Check your inbox.',
+      resendError: 'Failed to send email. Please try again.',
     },
 
     forgotPassword: {
@@ -584,8 +596,11 @@ export const translations = {
       errorEmptyFields: 'Fill in all fields.',
       errorPasswordMismatch: 'Passwords do not match.',
       errorPasswordLength: 'Password must be at least 8 characters.',
-      successTitle: 'Email verified!',
-      successMessage: 'Your account has been successfully activated. You can now log in.',
+      verifyEmailTitle: 'Check your email',
+      verifyEmailMessage: 'We sent a verification link to your email address. Click it to activate your account and be able to log in.',
+      verifiedTitle: 'Email verified!',
+      verifiedMessage: 'Your account has been successfully activated. You can now log in.',
+      goToLogin: 'Go to login',
     },
 
     main: {
@@ -784,6 +799,7 @@ export const translations = {
     common: {
       soon: 'Soon',
       loading: 'Loading...',
+      submitting: 'Submitting...',
       error: 'An error occurred',
       connectionError: 'Connection server error',
       save: 'Save',
