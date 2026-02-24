@@ -87,8 +87,8 @@ export const translations = {
       errorPasswordLength: 'Hasło musi mieć co najmniej 8 znaków.',
       verifyEmailTitle: 'Sprawdź swoją skrzynkę',
       verifyEmailMessage: 'Wysłaliśmy link weryfikacyjny na Twój adres e-mail. Kliknij go, aby aktywować konto i móc się zalogować.',
-      verifiedTitle: 'Email zweryfikowany!',
-      verifiedMessage: 'Twoje konto zostało pomyślnie aktywowane. Możesz się teraz zalogować.',
+      authVerifiedTitle: 'Email zweryfikowany!',
+      authVerifiedMessage: 'Twoje konto zostało pomyślnie aktywowane. Możesz się teraz zalogować.',
       goToLogin: 'Przejdź do logowania',
     },
 
@@ -598,8 +598,8 @@ export const translations = {
       errorPasswordLength: 'Password must be at least 8 characters.',
       verifyEmailTitle: 'Check your email',
       verifyEmailMessage: 'We sent a verification link to your email address. Click it to activate your account and be able to log in.',
-      verifiedTitle: 'Email verified!',
-      verifiedMessage: 'Your account has been successfully activated. You can now log in.',
+      authVerifiedTitle: 'Email verified!',
+      authVerifiedMessage: 'Your account has been successfully activated. You can now log in.',
       goToLogin: 'Go to login',
     },
 

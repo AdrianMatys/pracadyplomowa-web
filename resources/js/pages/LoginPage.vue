@@ -133,8 +133,8 @@ const resendVerification = async () => {
           </div>
 
           <div v-if="emailVerified" class="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-4 text-sm space-y-1">
-            <p class="font-semibold text-emerald-400">{{ t('register.verifiedTitle') }}</p>
-            <p class="text-emerald-300/80">{{ t('register.verifiedMessage') }}</p>
+            <p class="font-semibold text-emerald-400">{{ t('register.authVerifiedTitle') }}</p>
+            <p class="text-emerald-300/80">{{ t('register.authVerifiedMessage') }}</p>
           </div>
 
           <div v-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">

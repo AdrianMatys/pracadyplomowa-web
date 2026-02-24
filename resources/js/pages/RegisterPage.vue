@@ -127,7 +127,7 @@ const handleRegisterSubmit = async () => {
 
             <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-full bg-textPrimary px-6 py-3 text-sm font-semibold text-bgPrimary transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textPrimary disabled:cursor-not-allowed disabled:opacity-70" :disabled="isLoading">
               <IconSpinner v-if="isLoading" class="h-5 w-5 animate-spin text-bgPrimary" />
-              {{ isLoading ? t('register.submitting') : t('register.submitButton') }}
+              <span>{{ isLoading ? t('register.submitting') : t('register.submitButton') }}</span>
             </button>
           </form>
 
