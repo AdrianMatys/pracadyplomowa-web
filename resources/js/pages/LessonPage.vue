@@ -277,7 +277,9 @@ const checkSolution = async () => {
             validationError.value = null
 
             if (courseId.value && currentLesson.value && userCode.value) {
-              markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+              if (userCourseProgress.value && !currentLesson.value.isCompleted) {
+                await markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+              }
             }
           } else {
             validationError.value = `Oczekiwano wyniku: "${currentLesson.value.expectedOutput.trim()}"`
@@ -289,7 +291,9 @@ const checkSolution = async () => {
 
           if (courseId.value && currentLesson.value && userCode.value) {
             if (userCourseProgress.value) {
-              markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+              if (!currentLesson.value.isCompleted) {
+                await markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+              }
             } else {
               if (!guestCompletedLessonIds.value.includes(currentLesson.value.id.toString())) {
                 guestCompletedLessonIds.value.push(currentLesson.value.id.toString())
@@ -309,7 +313,9 @@ const checkSolution = async () => {
         if (isSolutionCorrect.value) {
           if (courseId.value && currentLesson.value && userCode.value) {
             if (userCourseProgress.value) {
-              markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+              if (!currentLesson.value.isCompleted) {
+                await markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+              }
             } else {
               if (!guestCompletedLessonIds.value.includes(currentLesson.value.id.toString())) {
                 guestCompletedLessonIds.value.push(currentLesson.value.id.toString())
@@ -353,7 +359,9 @@ const checkSolution = async () => {
     }
 
     if (userCourseProgress.value) {
-      markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+      if (!currentLesson.value.isCompleted) {
+        await markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), undefined, userCode.value)
+      }
     } else {
       if (!guestCompletedLessonIds.value.includes(currentLesson.value.id.toString())) {
         guestCompletedLessonIds.value.push(currentLesson.value.id.toString())
@@ -362,11 +370,13 @@ const checkSolution = async () => {
   }
 }
 
-const handleNextLesson = () => {
+const handleNextLesson = async () => {
   if (!currentLesson.value) return
 
   if (userCourseProgress.value) {
-    markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), nextLesson.value?.id.toString(), userCode.value)
+    if (!currentLesson.value.isCompleted) {
+      await markLessonAsCompleted(courseId.value, currentLesson.value.id.toString(), nextLesson.value?.id.toString(), userCode.value)
+    }
   } else {
     if (!guestCompletedLessonIds.value.includes(currentLesson.value.id.toString())) {
       guestCompletedLessonIds.value.push(currentLesson.value.id.toString())

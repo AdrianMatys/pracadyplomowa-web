@@ -213,10 +213,11 @@ export const fetchProfileData = async (language: string): Promise<ProfileRespons
   }
 }
 
-export const completeLesson = async (courseId: string, lessonId: string, userCode?: string): Promise<void> => {
-  await api.post(`/api/courses/${courseId}/lessons/${lessonId}/complete`, {
+export const completeLesson = async (courseId: string, lessonId: string, userCode?: string): Promise<any> => {
+  const response = await api.post(`/api/courses/${courseId}/lessons/${lessonId}/complete`, {
     user_code: userCode,
   })
+  return response.data
 }
 
 export type NewsResponse = {

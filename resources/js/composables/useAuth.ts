@@ -90,6 +90,10 @@ export const useAuth = () => {
     }
   }
 
+  const setUser = (userData: any) => {
+    user.value = userData
+  }
+
   return {
     isLoggedIn,
     user,
@@ -99,5 +103,6 @@ export const useAuth = () => {
     register,
     logout,
     refreshUser,
+    setUser,
   }
 }

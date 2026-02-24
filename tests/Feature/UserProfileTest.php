@@ -77,7 +77,7 @@ class UserProfileTest extends TestCase
         ]);
 
         $response->assertOk();
-        $this->assertStringContains('/storage/avatars/', $user->fresh()->profile->avatar_url);
+        $this->assertStringContains('data:image/jpg;base64,', $user->fresh()->profile->avatar_url);
     }
 
     public function test_user_can_update_email(): void

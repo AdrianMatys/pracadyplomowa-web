@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -26,39 +27,51 @@ class LessonController extends Controller
 
     public function complete(Request $request, string $courseId, string $lessonId): JsonResponse
     {
-        $user = $request->user();
-        $progress = $user->progress()->firstOrCreate(
-            ['course_id' => $courseId],
-            ['status' => 'started', 'started_at' => now()]
-        );
+        return DB::transaction(function () use ($request, $courseId, $lessonId) {
+            $user = $request->user();
 
-        $completedIds = $progress->completed_lesson_ids ?? [];
-        if (! in_array($lessonId, $completedIds)) {
-            $completedIds[] = $lessonId;
-            $progress->completed_lesson_ids = $completedIds;
-            $this->logAction('lesson_complete', "Ukończono lekcję ID: {$lessonId} w kursie ID: {$courseId}", ['course_id' => $courseId, 'lesson_id' => $lessonId]);
-        }
+            $progress = $user->progress()
+                ->where('course_id', $courseId)
+                ->lockForUpdate()
+                ->first();
 
-        if ($user->profile) {
-            $user->profile->updateStreak();
-        }
+            if (! $progress) {
+                $progress = $user->progress()->create([
+                    'course_id' => $courseId,
+                    'status' => 'started',
+                    'started_at' => now(),
+                ]);
+            }
 
-        if ($request->has('user_code')) {
-            $savedCode = $progress->saved_code ?? [];
-            $savedCode[$lessonId] = $request->input('user_code');
-            $progress->saved_code = $savedCode;
-        }
+            $completedIds = $progress->completed_lesson_ids ?? [];
+            if (! in_array($lessonId, $completedIds)) {
+                $completedIds[] = $lessonId;
+                $progress->completed_lesson_ids = $completedIds;
+                $this->logAction('lesson_complete', "Ukończono lekcję ID: {$lessonId} w kursie ID: {$courseId}", ['course_id' => $courseId, 'lesson_id' => $lessonId]);
+            }
 
-        $progress->save();
+            if ($user->profile) {
+                $user->profile->updateStreak();
+            }
 
-        $this->checkAchievements($user, $progress);
-        $this->checkCourseCompletion($user, $progress, $courseId, $completedIds);
+            if ($request->has('user_code')) {
+                $savedCode = $progress->saved_code ?? [];
+                $savedCode[$lessonId] = $request->input('user_code');
+                $progress->saved_code = $savedCode;
+            }
 
-        return response()->json([
-            'message' => 'Lesson marked as complete',
-            'progress' => $progress,
-            'course_completed' => $progress->status === 'completed',
-        ]);
+            $progress->save();
+
+            $this->checkAchievements($user, $progress);
+            $this->checkCourseCompletion($user, $progress, $courseId, $completedIds);
+
+            return response()->json([
+                'message' => 'Lesson marked as complete',
+                'progress' => $progress,
+                'course_completed' => $progress->status === 'completed',
+                'user' => $user->fresh()->load(['profile', 'progress.course.lessons']),
+            ]);
+        });
     }
 
     private function checkAchievements($user, $progress): void

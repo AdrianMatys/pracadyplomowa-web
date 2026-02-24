@@ -11,6 +11,7 @@ let instance: ReturnType<typeof createInstance> | null = null
 function createInstance() {
   const { currentLanguage } = useI18n()
   const { refreshUser } = useAuth()
+  const completingLessons = new Set<string>()
 
   const {
     data: profileData,
@@ -30,6 +31,10 @@ function createInstance() {
   const markLessonAsCompleted = async (courseId: string, lessonId: string, nextLessonId?: string, userCode?: string) => {
     if (!profileData.value) return
 
+    const cacheKey = `${courseId}-${lessonId}`
+    if (completingLessons.has(cacheKey)) return
+    completingLessons.add(cacheKey)
+
     const progress = profileData.value.courseProgress.find((p) => p.courseId === courseId)
     if (progress) {
       if (!progress.completedLessonIds.includes(lessonId)) {
@@ -42,11 +47,20 @@ function createInstance() {
     }
 
     try {
-      await completeLesson(courseId, lessonId, userCode)
+      const response = await completeLesson(courseId, lessonId, userCode)
+
+      const { setUser } = useAuth()
+      if (response && (response as any).user) {
+        setUser((response as any).user)
+      } else {
+        await refreshUser()
+      }
+
       await refreshProfileData()
-      await refreshUser()
     } catch (e) {
       console.error('Failed to save progress', e)
+    } finally {
+      completingLessons.delete(cacheKey)
     }
   }
 

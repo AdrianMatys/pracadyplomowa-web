@@ -40,7 +40,7 @@ class LessonTest extends TestCase
 
         $response = $this->getJson("/api/courses/{$course->id}/lessons/{$lesson->id}");
 
-        $response->assertStatus(401);
+        $response->assertStatus(403);
     }
 
     public function test_user_can_complete_lesson(): void
