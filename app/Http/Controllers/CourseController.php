@@ -15,7 +15,7 @@ class CourseController extends Controller
         $lang = $request->header('Accept-Language', 'pl');
         $isEnglish = str_starts_with($lang, 'en');
         $cacheLang = $isEnglish ? 'en' : 'pl';
-        
+
         $cacheKey = "courses_index_{$search}_{$cacheLang}";
 
         $translatedCourses = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(30), function () use ($search, $isEnglish) {
@@ -56,12 +56,12 @@ class CourseController extends Controller
         $courseArray = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(30), function () use ($id, $isEnglish) {
             $course = Course::with(['lessons', 'lessons.exercises', 'tags'])->findOrFail($id);
             $courseArray = $course->toArray();
-            
+
             if ($isEnglish) {
                 $courseArray['title'] = $course->title_en ?: $course->title;
                 $courseArray['description'] = $course->description_en ?: $course->description;
             }
-            
+
             return $courseArray;
         });
 

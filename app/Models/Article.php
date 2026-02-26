@@ -66,12 +66,11 @@ class Article extends Model
 
     public function getReadTimeAttribute(): string
     {
-    
+
         if ($this->estimated_time) {
             return $this->estimated_time.' min';
         }
 
-    
         $wordCount = str_word_count(strip_tags($this->content));
         $minutes = ceil($wordCount / 200);
 

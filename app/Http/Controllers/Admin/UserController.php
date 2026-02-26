@@ -72,7 +72,7 @@ class UserController extends Controller
             $xp = 15000;
         }
 
-        if (!$user->profile) {
+        if (! $user->profile) {
             $user->profile()->create(['experience_points' => $xp]);
         } else {
             $user->profile->experience_points = $xp;
@@ -115,7 +115,7 @@ class UserController extends Controller
         if ($user->level !== $newLevel) {
             $user->level = $newLevel;
             $user->save();
-            
+
             $this->enforceLevelRequirements($user);
         }
 
@@ -131,13 +131,15 @@ class UserController extends Controller
     private function enforceLevelRequirements(User $user): void
     {
         $userLevelNum = $this->levelToNumber($user->level);
-        
+
         $enrolledProgress = \App\Models\Progress::where('user_id', $user->id)
             ->with('course')
             ->get();
 
         foreach ($enrolledProgress as $progress) {
-            if (!$progress->course) continue;
+            if (! $progress->course) {
+                continue;
+            }
 
             $courseLevelNum = $this->levelToNumber($progress->course->level);
 
@@ -147,7 +149,7 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'course_id' => $progress->course_id,
                     'course_level' => $progress->course->level,
-                    'user_level' => $user->level
+                    'user_level' => $user->level,
                 ]);
             }
         }

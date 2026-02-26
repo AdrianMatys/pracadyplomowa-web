@@ -16,7 +16,7 @@ $_SERVER['PHP_SELF'] = '/index.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
-    
+
     $_ENV['APP_ENV'] = 'production';
     $_SERVER['APP_ENV'] = 'production';
     putenv('APP_ENV=production');
@@ -24,20 +24,20 @@ if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
     if (isset($_SERVER['HTTP_HOST'])) {
         $host = $_SERVER['HTTP_HOST'];
         $scheme = 'https://';
-        $url = $scheme . $host;
+        $url = $scheme.$host;
 
         $_ENV['APP_URL'] = $url;
         $_SERVER['APP_URL'] = $url;
         putenv("APP_URL={$url}");
 
         $currentStateful = env('SANCTUM_STATEFUL_DOMAINS', '');
-        $newStateful = $currentStateful . ',' . $host;
+        $newStateful = $currentStateful.','.$host;
         $_ENV['SANCTUM_STATEFUL_DOMAINS'] = $newStateful;
         $_SERVER['SANCTUM_STATEFUL_DOMAINS'] = $newStateful;
         putenv("SANCTUM_STATEFUL_DOMAINS={$newStateful}");
     }
 
-    $dbUrl = $_ENV['MYC_POSTGRES_URL'] ?? $_SERVER['MYC_POSTGRES_URL'] ?? 
+    $dbUrl = $_ENV['MYC_POSTGRES_URL'] ?? $_SERVER['MYC_POSTGRES_URL'] ??
              $_ENV['MYC_POSTGRES_PRISMA_URL'] ?? $_SERVER['MYC_POSTGRES_PRISMA_URL'] ?? null;
 
     if ($dbUrl) {
@@ -64,33 +64,33 @@ if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
 
     $storagePath = '/tmp/storage';
     $bootstrapPath = '/tmp/bootstrap';
-    
+
     $dirs = [
-        $storagePath . '/framework/views',
-        $storagePath . '/framework/sessions',
-        $storagePath . '/framework/cache',
-        $storagePath . '/logs',
-        $bootstrapPath . '/cache',
+        $storagePath.'/framework/views',
+        $storagePath.'/framework/sessions',
+        $storagePath.'/framework/cache',
+        $storagePath.'/logs',
+        $bootstrapPath.'/cache',
     ];
-    
+
     foreach ($dirs as $dir) {
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
     }
-    
+
     $app->useStoragePath($storagePath);
     $app->useBootstrapPath($bootstrapPath);
-    
+
     $app['events']->listen('bootstrapped: Illuminate\Foundation\Bootstrap\LoadConfiguration', function ($app) use ($storagePath) {
         $config = $app['config'];
-        
-        $config->set('view.compiled', $storagePath . '/framework/views');
-        $config->set('session.files', $storagePath . '/framework/sessions');
-        $config->set('cache.stores.file.path', $storagePath . '/framework/cache');
-        
+
+        $config->set('view.compiled', $storagePath.'/framework/views');
+        $config->set('session.files', $storagePath.'/framework/sessions');
+        $config->set('cache.stores.file.path', $storagePath.'/framework/cache');
+
         if (in_array($config->get('logging.default'), ['stack', 'single', 'daily'])) {
-             $config->set('logging.default', 'stderr');
+            $config->set('logging.default', 'stderr');
         }
     });
 }

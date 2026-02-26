@@ -1,0 +1,116 @@
+import { d as C, q as M, r as d, e as V, a as c, m as W, b as e, t as n, i as r, g as N, w as R, y as T, v as u, x as g, E as U, F as j, h as E, u as L, p as A, n as B, o as m } from './vendor-BOwXO-1K.js'
+import { u as $, b as v, c as D } from './main-C9ibHt9P.js'
+import './axios-B9ygI19o.js'
+const F = { key: 0, class: 'flex justify-center py-12' },
+  O = { class: 'text-textSecondary' },
+  q = { key: 1, class: 'space-y-8 max-w-4xl mx-auto' },
+  z = { class: 'flex items-center gap-4' },
+  I = { class: 'text-2xl font-bold text-textWhite' },
+  G = { class: 'bg-card border border-strokePrimary/30 rounded-xl p-6 space-y-4' },
+  H = { class: 'text-lg font-bold text-textWhite mb-4' },
+  J = { class: 'grid gap-4' },
+  K = { class: 'space-y-2 mb-4' },
+  Q = { class: 'block text-xs font-bold text-textSecondary uppercase mb-1' },
+  X = { class: 'space-y-2 mb-4' },
+  Y = { class: 'block text-xs font-bold text-textSecondary uppercase mb-1' },
+  Z = { value: 'news' },
+  ee = { value: 'article' },
+  te = { class: 'block text-xs font-bold text-textSecondary uppercase mb-1' },
+  se = { class: 'flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 bg-bgSecondary rounded-lg border border-strokePrimary/30' },
+  oe = ['onClick'],
+  ae = { class: 'block text-xs font-bold text-textSecondary uppercase mb-1' },
+  ne = ['placeholder'],
+  re = { class: 'block text-xs font-bold text-textSecondary uppercase mb-1' },
+  le = { class: 'flex justify-end pt-2' },
+  de = ['disabled'],
+  xe = C({
+    __name: 'AdminNewsEditPage',
+    setup(ie) {
+      const w = M(),
+        k = L(),
+        { notify: p } = D(),
+        { t } = $(),
+        f = w.params.id,
+        x = d(null),
+        _ = d([]),
+        b = d(!0),
+        i = d(!1),
+        a = d({ title: '', content: '', type: 'news', tags: [], estimated_time: null }),
+        S = (o) => {
+          const s = a.value.tags.indexOf(o)
+          s === -1 ? a.value.tags.push(o) : a.value.tags.splice(s, 1)
+        },
+        h = async () => {
+          b.value = !0
+          try {
+            const [o, s] = await Promise.all([v.get(`/api/admin/news/${f}`), v.get('/api/technologies')])
+            ;((x.value = o.data), (_.value = s.data), (a.value = { title: o.data.title, content: o.data.content, type: o.data.type, tags: o.data.tags.map((y) => y.id), estimated_time: o.data.estimated_time || null }))
+          } catch {
+            ;(p('error', t('admin.common.error')), k.push('/admin/news'))
+          } finally {
+            b.value = !1
+          }
+        },
+        P = async () => {
+          i.value = !0
+          try {
+            ;(await v.put(`/api/admin/news/${f}`, a.value), p('success', t('admin.common.notifications.success')), h())
+          } catch (o) {
+            console.error('Update Error:', o.response?.data)
+            let s = t('admin.common.error')
+            ;(o.response?.data?.errors
+              ? (s = Object.values(o.response.data.errors).flat().join(`
+`))
+              : o.response?.data?.message && (s = o.response.data.message),
+              p('error', s))
+          } finally {
+            i.value = !1
+          }
+        }
+      return (
+        V(h),
+        (o, s) => {
+          const y = T('RouterLink')
+          return b.value
+            ? (m(), c('div', F, [e('span', O, n(r(t)('admin.common.loading')), 1)]))
+            : x.value
+              ? (m(),
+                c('div', q, [
+                  e('div', z, [N(y, { to: '/admin/news', class: 'p-2 rounded-lg bg-bgSecondary text-textSecondary hover:text-textWhite transition-colors' }, { default: R(() => [A(' ← ' + n(r(t)('admin.common.back')), 1)]), _: 1 }), e('h1', I, n(r(t)('admin.news.editPage.title')) + ': ' + n(x.value.title), 1)]),
+                  e('div', G, [
+                    e('h2', H, n(r(t)('admin.news.editPage.details')), 1),
+                    e('div', J, [
+                      e('div', K, [e('label', Q, n(r(t)('admin.news.addModal.articleTitle')), 1), u(e('input', { 'onUpdate:modelValue': s[0] || (s[0] = (l) => (a.value.title = l)), type: 'text', class: 'w-full bg-bgSecondary border border-strokePrimary/30 rounded-lg px-4 py-2 text-textWhite text-sm focus:border-primary focus:outline-none' }, null, 512), [[g, a.value.title]])]),
+                      e('div', X, [
+                        e('label', Y, n(r(t)('admin.common.type')), 1),
+                        u(e('select', { 'onUpdate:modelValue': s[1] || (s[1] = (l) => (a.value.type = l)), class: 'w-full bg-bgSecondary border border-strokePrimary/30 rounded-lg px-4 py-2 text-textWhite text-sm focus:border-primary focus:outline-none' }, [e('option', Z, n(r(t)('admin.news.types.news')), 1), e('option', ee, n(r(t)('admin.news.types.article')), 1)], 512), [[U, a.value.type]]),
+                      ]),
+                      e('div', null, [
+                        e('label', te, n(r(t)('admin.news.addModal.tags')), 1),
+                        e('div', se, [
+                          (m(!0),
+                          c(
+                            j,
+                            null,
+                            E(_.value, (l) => (m(), c('button', { key: l.id, class: B(['px-2 py-1 rounded-md text-xs font-bold transition-colors border', a.value.tags.includes(l.id) ? 'bg-primary/20 text-primary border-primary' : 'bg-transparent text-textSecondary border-transparent hover:bg-white/5']), onClick: (ce) => S(l.id) }, n(l.name), 11, oe))),
+                            128,
+                          )),
+                        ]),
+                      ]),
+                      e('div', null, [
+                        e('label', ae, n(r(t)('admin.news.addModal.readingTime')), 1),
+                        u(e('input', { 'onUpdate:modelValue': s[2] || (s[2] = (l) => (a.value.estimated_time = l)), type: 'number', min: '1', placeholder: r(t)('admin.news.addModal.readingTimePlaceholder'), class: 'w-full bg-bgSecondary border border-strokePrimary/30 rounded-lg px-4 py-2 text-textWhite text-sm focus:border-primary focus:outline-none' }, null, 8, ne), [
+                          [g, a.value.estimated_time, void 0, { number: !0 }],
+                        ]),
+                      ]),
+                      e('div', null, [e('label', re, n(r(t)('admin.news.addModal.content')), 1), u(e('textarea', { 'onUpdate:modelValue': s[3] || (s[3] = (l) => (a.value.content = l)), rows: '12', class: 'w-full bg-bgSecondary border border-strokePrimary/30 rounded-lg px-4 py-2 text-textWhite text-sm focus:border-primary focus:outline-none font-mono' }, null, 512), [[g, a.value.content]])]),
+                    ]),
+                    e('div', le, [e('button', { disabled: i.value, class: 'px-6 py-2 bg-primary text-textWhite font-bold rounded-lg hover:bg-primary/90 transition-all disabled:opacity-50', onClick: P }, n(i.value ? r(t)('admin.common.saving') : r(t)('admin.common.save')), 9, de)]),
+                  ]),
+                ]))
+              : W('', !0)
+        }
+      )
+    },
+  })
+export { xe as default }

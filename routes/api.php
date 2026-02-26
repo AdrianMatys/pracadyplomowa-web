@@ -59,8 +59,6 @@ Route::middleware(['auth:sanctum', 'check_status'])->group(function () {
     Route::post('/courses/{courseId}/lessons/{lessonId}/complete', [LessonController::class, 'complete']);
     Route::post('/exercises/{id}/submit', [SubmissionController::class, 'storeExerciseSubmission']);
 
-
-
     Route::prefix('admin')->middleware(\App\Http\Middleware\EnsureUserIsAdmin::class)->group(function () {
         Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index']);
         Route::patch('/users/{user}/ban', [\App\Http\Controllers\Admin\UserController::class, 'ban']);

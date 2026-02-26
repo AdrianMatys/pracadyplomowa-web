@@ -60,7 +60,7 @@ class UserController extends Controller
             $file = $request->file('avatar');
             $type = $file->getClientOriginalExtension();
             $data = file_get_contents($file->getRealPath());
-            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+            $base64 = 'data:image/'.$type.';base64,'.base64_encode($data);
             $profileData['avatar_url'] = $base64;
         }
 

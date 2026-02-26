@@ -23,7 +23,7 @@ import IconSpinner from '@/icons/IconSpinner.vue'
 
 const route = useRoute()
 const router = useRouter()
-const { dashboardData, isDashboardLoading, loadDashboardData } = useDashboardData()
+const { dashboardData, loadDashboardData } = useDashboardData()
 const { profileData, loadProfileData, markLessonAsCompleted } = useProfileData()
 const { t, currentLanguage } = useI18n()
 const { isLoggedIn } = useAuth()
@@ -353,9 +353,11 @@ const checkSolution = async () => {
 
   if (courseId.value && currentLesson.value && userCode.value) {
     if (isLoggedIn.value && currentLesson.value.exerciseId) {
-      api.post(`/api/exercises/${currentLesson.value.exerciseId}/submit`, {
-        code: userCode.value,
-      }).catch(() => {})
+      api
+        .post(`/api/exercises/${currentLesson.value.exerciseId}/submit`, {
+          code: userCode.value,
+        })
+        .catch(() => {})
     }
 
     if (userCourseProgress.value) {

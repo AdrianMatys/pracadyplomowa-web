@@ -18,7 +18,7 @@ class GuestCourseSeeder extends Seeder
                 'reward' => 0,
                 'duration' => 15,
                 'level' => 'junior',
-                'image_path' => 'courses/guest.png', 
+                'image_path' => 'courses/guest.png',
             ]
         );
 
@@ -35,8 +35,8 @@ class GuestCourseSeeder extends Seeder
                     'hint' => 'Nagłówek pierwszego poziomu otacza tekst znacznikami otwierającym i zamykającym. Jaki tag odpowiada za nagłówek H1?',
                     'hint_2' => 'Wzorzec: <h1>Twój tekst tutaj</h1> — wstaw odpowiednią treść między znaczniki.',
                     'judge0_language_id' => null, // HTML check via regex/preview
-                    'preview_type' => 'html'
-                ]
+                    'preview_type' => 'html',
+                ],
             ],
             [
                 'title' => 'Backend (PHP): Powitanie',
@@ -49,8 +49,8 @@ class GuestCourseSeeder extends Seeder
                     'validation_regex' => '/echo\s*[\'"]Działam![\'"]\s*;/i',
                     'hint' => 'Komenda echo wypisuje tekst na ekran. Tekst musi być otoczony cudzysłowami, a instrukcja kończy się średnikiem.',
                     'judge0_language_id' => 68, // PHP
-                    'hint_2' => 'Wzorzec: echo "Twój tekst"; — wstaw odpowiednią treść między cudzysłowy.'
-                ]
+                    'hint_2' => 'Wzorzec: echo "Twój tekst"; — wstaw odpowiednią treść między cudzysłowy.',
+                ],
             ],
             [
                 'title' => 'Baza danych (SQL): Pobieranie danych',
@@ -63,8 +63,8 @@ class GuestCourseSeeder extends Seeder
                     'validation_regex' => '/SELECT\s+\*\s+FROM\s+users/i',
                     'hint' => 'Gwiazdka (*) w SQL oznacza "wszystkie kolumny". Po FROM podaj nazwę tabeli.',
                     'judge0_language_id' => null, // SQL via regex mostly here or mock
-                    'hint_2' => 'Wzorzec: SELECT [co] FROM [skąd]; — zastąp [co] i [skąd] odpowiednimi wartościami.'
-                ]
+                    'hint_2' => 'Wzorzec: SELECT [co] FROM [skąd]; — zastąp [co] i [skąd] odpowiednimi wartościami.',
+                ],
             ],
             [
                 'title' => 'Logika (JavaScript): Konsola',
@@ -77,9 +77,9 @@ class GuestCourseSeeder extends Seeder
                     'validation_regex' => '/console\.log\(\s*100\s*\)/',
                     'hint' => 'Funkcja console.log() wypisuje wartość w konsoli. Liczbę podajesz bezpośrednio jako argument, bez cudzysłowów.',
                     'judge0_language_id' => 63, // JS
-                    'hint_2' => 'Wzorzec: console.log([wartość]); — wstaw odpowiednią liczbę w miejsce [wartość].'
-                ]
-            ]
+                    'hint_2' => 'Wzorzec: console.log([wartość]); — wstaw odpowiednią liczbę w miejsce [wartość].',
+                ],
+            ],
         ];
 
         foreach ($lessons as $index => $data) {

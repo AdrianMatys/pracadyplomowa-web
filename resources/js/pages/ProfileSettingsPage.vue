@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import MainHeader from '@/components/MainHeader.vue'
 import { useDashboardData } from '@/composables/useDashboardData'
@@ -73,15 +73,10 @@ watch(
     const newDescription = summary.description || ''
     const newAvatarUrl = summary.avatarUrl || ''
 
-    // Set current values
-    logoUrl.value = newAvatarUrl
-    description.value = newDescription
-    nickname.value = newNickname
     logoUrl.value = newAvatarUrl
     description.value = newDescription
     nickname.value = newNickname
 
-    // Set initial values for comparison
     initialAvatarUrl.value = newAvatarUrl
 
     wasInitialized.value = true

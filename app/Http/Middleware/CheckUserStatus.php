@@ -12,11 +12,12 @@ class CheckUserStatus
     {
         $user = $request->user();
 
-        if ($user && ($user->is_banned || !$user->exists())) {
+        if ($user && ($user->is_banned || ! $user->exists())) {
             if ($request->expectsJson()) {
                 return response()->json(['message' => 'Your account is disabled or does not exist.'], 401);
             }
             auth()->logout();
+
             return redirect('/login');
         }
 

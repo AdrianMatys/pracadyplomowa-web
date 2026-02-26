@@ -37,7 +37,7 @@ class LessonController extends Controller
             'order' => $validated['order'],
         ]);
 
-        if (!empty($validated['has_exercise'])) {
+        if (! empty($validated['has_exercise'])) {
             $lesson->exercises()->create([
                 'title' => $validated['exercise_title'] ?? $validated['title'],
                 'description' => $validated['exercise_description'] ?? $validated['description'] ?? '',
@@ -85,7 +85,7 @@ class LessonController extends Controller
             'content' => $validated['content'] ?? null,
         ]);
 
-        if (!empty($validated['has_exercise'])) {
+        if (! empty($validated['has_exercise'])) {
             $exerciseData = [
                 'title' => $validated['exercise_title'] ?? $validated['title'],
                 'description' => $validated['exercise_description'] ?? $validated['description'] ?? '',

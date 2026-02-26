@@ -137,20 +137,12 @@ const resendVerification = async () => {
             <p class="text-emerald-300/80">{{ t('register.authVerifiedMessage') }}</p>
           </div>
 
-          <div v-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">
-            ✓ {{ t('login.resendSuccess') }}
-          </div>
+          <div v-if="resendSent" class="rounded-lg bg-green-500/10 p-3 text-sm text-green-400">✓ {{ t('login.resendSuccess') }}</div>
 
           <div v-else-if="errorMessage" class="rounded-lg bg-red-500/10 p-3 text-sm text-red-400 space-y-2">
             <p>{{ errorMessage }}</p>
-            <button
-              v-if="emailUnverified"
-              type="button"
-              class="mt-1 flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors"
-              :disabled="resendLoading"
-              @click="resendVerification"
-            >
-               <IconSpinner v-if="resendLoading" class="h-3 w-3 animate-spin" />
+            <button v-if="emailUnverified" type="button" class="mt-1 flex items-center gap-2 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors" :disabled="resendLoading" @click="resendVerification">
+              <IconSpinner v-if="resendLoading" class="h-3 w-3 animate-spin" />
               {{ resendLoading ? t('common.submitting') : t('login.resendLink') }}
             </button>
           </div>

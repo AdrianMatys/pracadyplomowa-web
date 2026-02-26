@@ -1,0 +1,14 @@
+.custom-scrollbar[data-v-1b9b2c2f]::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom-scrollbar[data-v-1b9b2c2f]::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar[data-v-1b9b2c2f]::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+.custom-scrollbar[data-v-1b9b2c2f]::-webkit-scrollbar-thumb:hover {
+  background: #404854;
+}

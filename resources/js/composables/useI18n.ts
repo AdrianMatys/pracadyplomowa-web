@@ -4,10 +4,6 @@ import { translations, type Language } from '@/i18n/translations'
 const currentLanguage = ref<Language>((localStorage.getItem('language') as Language) || 'pl')
 
 export function useI18n() {
-  /**
-   * Translation function - retrieves text by dot-notation key
-   * Example: t('header.login') returns 'Zaloguj się' or 'Log in'
-   */
   const t = (key: string, params?: Record<string, string | number>): string => {
     const keys = key.split('.')
     let value: any = translations[currentLanguage.value]
@@ -32,9 +28,6 @@ export function useI18n() {
     return value
   }
 
-  /**
-   * Set the current language and persist to localStorage
-   */
   const setLanguage = (lang: Language) => {
     currentLanguage.value = lang
     localStorage.setItem('language', lang)
@@ -42,17 +35,11 @@ export function useI18n() {
     document.documentElement.lang = lang
   }
 
-  /**
-   * Toggle between Polish and English
-   */
   const toggleLanguage = () => {
     const newLang = currentLanguage.value === 'pl' ? 'en' : 'pl'
     setLanguage(newLang)
   }
 
-  /**
-   * Initialize language from localStorage on mount
-   */
   const initLanguage = () => {
     const savedLang = localStorage.getItem('language') as Language | null
     if (savedLang && (savedLang === 'pl' || savedLang === 'en')) {
@@ -61,14 +48,8 @@ export function useI18n() {
     document.documentElement.lang = currentLanguage.value
   }
 
-  /**
-   * Check if current language is Polish
-   */
   const isPolish = computed(() => currentLanguage.value === 'pl')
 
-  /**
-   * Check if current language is English
-   */
   const isEnglish = computed(() => currentLanguage.value === 'en')
 
   return {

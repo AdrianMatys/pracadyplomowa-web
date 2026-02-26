@@ -23,6 +23,7 @@ class NicknameNotProfane implements ValidationRule
         foreach (self::$blockedWords as $word) {
             if (str_contains($normalized, $word)) {
                 $fail('Nazwa użytkownika zawiera niedozwolone słowa.');
+
                 return;
             }
         }

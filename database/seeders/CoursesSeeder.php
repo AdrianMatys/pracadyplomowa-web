@@ -67,7 +67,7 @@ class CoursesSeeder extends Seeder
         );
 
         $this->createCourse(
-            'Bazy Danych – Wstęp do SQL',
+            'Bazy Danych - Wstęp do SQL',
             'Wyobraź sobie bazę danych jako wielki arkusz kalkulacyjny w Excelu. Nauczysz się z niego czytać.',
             400,
             15,
@@ -75,7 +75,7 @@ class CoursesSeeder extends Seeder
             'images/courses/sql.png',
             [
                 [
-                    'title' => 'Teoria – Tabela i SELECT',
+                    'title' => 'Teoria - Tabela i SELECT',
                     'content' => "Tabela: Miejsce, gdzie są dane (np. tabela users).\n\nKolumna: Pionowy rząd danych (np. email, age).\n\nWiersz: Jeden wpis (jeden użytkownik).\n\nSELECT: \"Wybierz\".\n\nFROM: \"Z\".\n\nSkładnia: SELECT kolumna FROM tabela; (oznacza: Pokaż mi kolumnę z tej tabeli). Gwiazdka * oznacza \"wszystkie kolumny\".\n\nKod początkowy:\n```sql\n-- Przykład: Wybierz wszystko z tabeli users\nSELECT * FROM users;\n```",
                     'exercise' => null,
                 ],
@@ -109,7 +109,7 @@ class CoursesSeeder extends Seeder
         );
 
         $this->createCourse(
-            'PHP – Logika backendu',
+            'PHP - Logika backendu',
             'Podstawy języka, który napędza większość Internetu. Zrozumienie zmiennych dolarowych i tablic.',
             450,
             25,
@@ -117,7 +117,7 @@ class CoursesSeeder extends Seeder
             'images/courses/php.png',
             [
                 [
-                    'title' => 'Teoria – Dolar i Tablice',
+                    'title' => 'Teoria - Dolar i Tablice',
                     'content' => "$: W PHP każda zmienna musi zaczynać się od dolara, np. \$imie = \"Ala\";.\n\nTablica ([]): To lista rzeczy. Np. \$owoce = [\"Jablko\", \"Banan\"];.\n\nIndeks: Pozycja na liście. Komputery liczą od zera! \$owoce[0] to \"Jablko\".\n\nKod początkowy:\n```php\n<?php\n\$liczby = [10, 20, 30];\necho \$liczby[0]; // Wypisze 10\n```",
                     'exercise' => null,
                 ],
@@ -164,7 +164,7 @@ class CoursesSeeder extends Seeder
         );
 
         $this->createCourse(
-            'React – Komponenty funkcyjne',
+            'React - Komponenty funkcyjne',
             'Zrozumienie, jak buduje się interfejsy z klocków (komponentów) i czym są "propsy".',
             800,
             30,
@@ -172,7 +172,7 @@ class CoursesSeeder extends Seeder
             'images/courses/react.png',
             [
                 [
-                    'title' => 'Teoria – Komponent i Props',
+                    'title' => 'Teoria - Komponent i Props',
                     'content' => "Komponent: To funkcja JavaScript, która zwraca kod HTML (JSX). Nazwa musi być z Wielkiej Litery.\n\nProps: To argumenty tej funkcji (jakby opcje konfiguracyjne klocka). Przekazujemy je tak: <Klocek kolor=\"czerwony\" />.\n\nDestrukturyzacja: Zamiast pisać props.kolor, piszemy w nawiasie funkcji ({ kolor }).\n\nKod początkowy:\n```javascript\n// Przykład:\nconst Powitanie = ({ imie }) => {\n    return <h1>Cześć, {imie}</h1>;\n};\n// Użycie: <Powitanie imie=\"Ewa\" />\n```",
                     'exercise' => null,
                 ],
@@ -219,7 +219,7 @@ class CoursesSeeder extends Seeder
         );
 
         $this->createCourse(
-            'Laravel – Modele i Eloquent',
+            'Laravel - Modele i Eloquent',
             'Jak kod PHP rozmawia z bazą danych bez pisania czystego SQL.',
             700,
             20,
@@ -227,7 +227,7 @@ class CoursesSeeder extends Seeder
             'images/courses/laravel.png',
             [
                 [
-                    'title' => 'Teoria – Model ORM',
+                    'title' => 'Teoria - Model ORM',
                     'content' => "Model: To klasa w PHP, która reprezentuje tabelę w bazie. Np. model User reprezentuje tabelę users.\n\nObiektowość: Zamiast pisać SELECT * FROM users, piszemy User::all().\n\nSzukanie: User::find(1) to to samo co WHERE id = 1.\n\nStrzałka ->: Używamy jej do wyciągania właściwości obiektu, np. \$user->email.\n\nKod początkowy:\n```php\n// Przykład (tylko do odczytu)\n\$user = User::find(1);\necho \$user->name;\n```",
                     'exercise' => null,
                 ],
@@ -261,7 +261,7 @@ class CoursesSeeder extends Seeder
         );
 
         $this->createCourse(
-            'Node.js – Asynchroniczność i Event Loop',
+            'Node.js - Asynchroniczność i Event Loop',
             'Jak JavaScript wykonuje zadania "w tle" nie blokując reszty aplikacji. Kluczowe dla wydajności.',
             1500,
             35,
@@ -269,54 +269,54 @@ class CoursesSeeder extends Seeder
             'images/courses/nodejs.png',
             [
                 [
-                    'title' => 'Teoria – Sync vs Async i Promise',
+                    'title' => 'Teoria - Sync vs Async i Promise',
                     'content' => "Blokowanie (Sync): Kod czeka, aż zadanie się skończy (np. czytanie dużego pliku). To źle, bo strona \"wisi\".\n\nNieblokowanie (Async): Kod zleca zadanie i idzie dalej. Gdy zadanie się skończy, wywoływana jest funkcja zwrotna (callback).\n\nPromise (Obietnica): Obiekt, który mówi \"Zaraz dam ci wynik albo błąd\". Ma metody .then() (sukces) i .catch() (błąd).\n\nAsync/Await: Nowoczesny sposób zapisu Promisów, który wygląda jak kod synchroniczny.\n\nKod początkowy:\n```javascript\n// Przykład async/await\nasync function getData() {\n   const data = await database.query(); // Czekaj tutaj, ale nie blokuj innych\n   console.log(data);\n}\n```",
                     'exercise' => null,
                 ],
                 [
-                    'title' => 'Użycie Promise',
-                    'content' => 'Funkcja wait(ms) zwraca Promise. Użyj .then(), aby wypisać "Gotowe" po jej zakończeniu.',
+                    'title' => 'Użycie Promise (Then/Catch)',
+                    'content' => 'Promisy pozwalają na obsługiwane operacji asynchronicznych (takich jak pobieranie danych z bazy). Funkcja `fetchUserProfile(userId)` zwraca Promise. Użyj `.then()`, aby zalogować profil, oraz `.catch()` aby zalogować komunikat o błędzie "Error".',
                     'exercise' => [
                         'title' => 'Użycie Promise',
-                        'description' => 'Funkcja wait(ms) zwraca Promise. Użyj .then(), aby wypisać "Gotowe" po jej zakończeniu.',
-                        'initial_code' => "wait(1000)\n  // Dopisz .then",
+                        'description' => 'Wywołaj fetchUserProfile(1). Użyj .then(), aby wypisać (console.log) profil użytkownika po pomyślnym pobraniu. W razie niepowodzenia użyj .catch() do wypisania tekstu "Error".',
+                        'initial_code' => "// Symulacja zapytania do bazy Danych\nfunction fetchUserProfile(userId) {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => resolve({ id: userId, name: 'Admin', role: 'SuperUser' }), 500);\n  });\n}\n\n// Twoje zadanie:\n// 1. Wywołaj fetchUserProfile z argumentem 1\n// 2. Dodaj .then() aby wypisać wynik (console.log)\n// 3. Dodaj .catch() i wypisz console.log(\"Error\")",
                         'expected_output' => null,
-                        'validation_regex' => '/\.then\s*\(\s*\(\s*\)\s*=>\s*console\.log\s*\(\s*[\'"]Gotowe[\'"]\s*\)\s*\)/',
-                        'hint' => 'Metoda .then() pozwala wywołać funkcję po zakończeniu Promise. Przekaż do niej funkcję strzałkową, która wykona console.log().',
-                        'hint_2' => 'Wzorzec: promise.then(() => { /* co zrobić po zakończeniu */ });',
+                        'validation_regex' => '/fetchUserProfile\(\s*1\s*\)\s*\.then\s*\([^)]*\)\s*=>\s*console\.log\([^)]*\)\s*\)\s*\.catch\s*\([^)]*\)\s*=>\s*console\.log\(\s*[\'"]Error[\'"]\s*\)\s*\)/ms',
+                        'hint' => 'Metoda .then() pozwala wywołać funkcję po zakończeniu Promise, a .catch() wyłapuje błędy. Przekaż do nich funkcje strzałkowe.',
+                        'hint_2' => 'Wzorzec: fetchUserProfile(1).then((profil) => console.log(profil)).catch((err) => console.log("Error"));',
                     ],
                 ],
                 [
                     'title' => 'Konwersja na Async/Await',
-                    'content' => 'Przerób funkcję login, która używa .then(), na nowoczesną składnię async/await.',
+                    'content' => 'Przerób klasyczny łańcuszek `.then()` na nowoczesną składnię asynchroniczną. Funkcja `verifyAdmin(user)` jest obecnie synchroniczna i wywołuje Promisy, przez co staje się nieczytelna.',
                     'exercise' => [
                         'title' => 'Konwersja na Async/Await',
-                        'description' => 'Przerób funkcję login, która używa .then(), na nowoczesną składnię async/await.',
-                        'initial_code' => "function login(user) {\n   return checkUser(user).then(isValid => {\n       return isValid ? \"OK\" : \"Error\";\n   });\n}",
+                        'description' => 'Przerób funkcję `verifyAdmin`, która obecnie używa `.then()`, na nowoczesną składnię asynchroniczną (async/await) usuwając łańcuszki `.then()`.',
+                        'initial_code' => "function checkUserDb(user) {\n    return new Promise(resolve => setTimeout(() => resolve(user.role === 'admin'), 200));\n}\n\n// TODO: Przerób funkcję `verifyAdmin` dodając słówko `async` przed function,\n// i używając klauzuli `await` do pobrania wyniku z checkUserDb(user).\nfunction verifyAdmin(user) {\n   return checkUserDb(user).then(isAdmin => {\n       return isAdmin ? \"Zalogowano jako Administrator\" : \"Brak dostępu\";\n   });\n}",
                         'expected_output' => null,
-                        'validation_regex' => '/async\s+function\s+login.*await\s+checkUser/',
-                        'hint' => 'Słowo kluczowe async przed function oznacza funkcję asynchroniczną. Wewnątrz niej możesz użyć await zamiast .then().',
-                        'hint_2' => 'Zamień .then(callback) na: const wynik = await wywołanie;',
+                        'validation_regex' => '/async\s+function\s+verifyAdmin.*?await\s+checkUserDb/ms',
+                        'hint' => 'Słowo kluczowe async przed function oznacza funkcję asynchroniczną. Wewnątrz niej możesz użyć await zamiast łańcuszka .then().',
+                        'hint_2' => 'Zamień .then(isAdmin => ...) na: const isAdmin = await checkUserDb(user);',
                     ],
                 ],
                 [
                     'title' => 'Obsługa błędów (Try/Catch)',
-                    'content' => 'Wewnątrz funkcji async wywołaj riskyOperation(). Jeśli wystąpi błąd, złap go (catch) i zwróć string "Awaria".',
+                    'content' => 'Blokowanie wyjątków asynchronicznych jest kluczowe, aby backend się nie zawiesił przy błędzie bazy danych. Wewnątrz funkcji async użyjemy konwencji `try / catch` obsługującej `await`.',
                     'exercise' => [
                         'title' => 'Obsługa błędów',
-                        'description' => 'Wewnątrz funkcji async wywołaj riskyOperation(). Jeśli wystąpi błąd, złap go (catch) i zwróć string "Awaria".',
-                        'initial_code' => "async function doWork() {\n   // Użyj try...catch\n   const result = await riskyOperation();\n   return result;\n}",
+                        'description' => 'Wewnątrz funkcji ` bezpiecznaOperacja()` wywołaj `riskyDatabaseCall()`. Jeśli wystąpi błąd, złap go (catch) i wypisz (console.log) słowo "AWARIA", by system nie wybuchnął.',
+                        'initial_code' => "function riskyDatabaseCall() {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => reject(new Error('Zerwano połączenie z bazą MYSQL_CONNECTION_REFUSED')), 100);\n  });\n}\n\nasync function bezpiecznaOperacja() {\n   // TODO: Użyj try...catch\n   // W try: const result = await riskyDatabaseCall(); return result;\n   // W catch: wypisz (console.log) słowo \"AWARIA\" i zwróć null\n   \n}",
                         'expected_output' => null,
-                        'validation_regex' => '/try\s*{.*catch\s*\(e\)\s*{\s*return\s*[\'"]Awaria[\'"]/',
-                        'hint' => 'Blok try { } otacza kod, który może rzucić błąd. Blok catch(e) { } łapie ten błąd i pozwala na obsługę.',
-                        'hint_2' => 'Wewnątrz catch zwróć odpowiedni tekst za pomocą return.',
+                        'validation_regex' => '/try\s*{.*await\s+riskyDatabaseCall.*?catch\s*\(.*?\)\s*{.*console\.log\(\s*[\'"]AWARIA[\'"]\s*\)/ms',
+                        'hint' => 'Blok try { } otacza kod asynchroniczny, który może zwrócić Promise.reject(). Blok catch(err) { } łapie ten błąd i pozwala go obsłużyć zabezpieczając aplikację.',
+                        'hint_2' => 'Wewnątrz catch dodaj `console.log("AWARIA")` i jako ostateczność `return null`.',
                     ],
                 ],
             ]
         );
 
         $this->createCourse(
-            'Zaawansowany SQL – Grupowanie i Agregacja',
+            'Zaawansowany SQL - Grupowanie i Agregacja',
             'Generowanie raportów i statystyk bezpośrednio w bazie danych.',
             1300,
             25,
@@ -324,34 +324,34 @@ class CoursesSeeder extends Seeder
             'images/courses/advanced_sql.png',
             [
                 [
-                    'title' => 'Teoria – Agregacja (SUM, COUNT, GROUP BY)',
+                    'title' => 'Teoria - Agregacja (SUM, COUNT, GROUP BY)',
                     'content' => "Funkcje agregujące: Biorą wiele wierszy i zwracają jedną liczbę.\n\nCOUNT(*): Policz ile wierszy.\n\nSUM(kolumna): Dodaj wartości.\n\nAVG(kolumna): Średnia.\n\nGROUP BY: \"Dla każdego...\". Np. \"Policz zamówienia DLA KAŻDEGO użytkownika\". Grupuje wyniki według podanej kolumny.\n\nHAVING: To samo co WHERE, ale działa na wynikach grupowania (np. \"tylko ci, co mają więcej niż 5 zamówień\").\n\nKod początkowy:\n```sql\n-- Policz średnią cenę produktów w każdej kategorii\nSELECT category, AVG(price) FROM products GROUP BY category;\n```",
                     'exercise' => null,
                 ],
                 [
                     'title' => 'Suma sprzedaży',
-                    'content' => 'Masz tabelę sales (id, amount, date). Oblicz łączną sumę (SUM) pola amount dla wszystkich sprzedaży.',
+                    'content' => 'Masz tabelę `sales` opisującą transakcje ze sklepów (kolumny: `id`, `user_id`, `amount`, `currency`, `created_at`). Oblicz łączną sumę (SUM) wygenerowanego przychodu (pola `amount`) dla wszystkich sprzedaży, reprezentując cały zysk firmy.',
                     'exercise' => [
-                        'title' => 'Suma sprzedaży',
-                        'description' => 'Oblicz łączną sumę (SUM) pola amount dla wszystkich sprzedaży.',
-                        'initial_code' => 'SELECT ...',
+                        'title' => 'Suma sprzedaży bazy komercyjnej',
+                        'description' => 'Oblicz łączną sumę (SUM) pola `amount` w tabeli `sales`. Możesz też ewentualnie nadać jej alias (np. `AS total_revenue`).',
+                        'initial_code' => "-- === TABELA: sales ===\n-- id (INT PRIMARY KEY)\n-- user_id (INT NULL)\n-- amount (DECIMAL)\n-- currency (VARCHAR)\n-- created_at (TIMESTAMP)\n\n-- Zadanie: Zwróć łączną sumę wszystkich transakcji (suma wartości 'amount')\nSELECT ...",
                         'expected_output' => null,
-                        'validation_regex' => '/SELECT\s+SUM\(amount\)\s+FROM\s+sales/i',
-                        'hint' => 'Funkcje agregujące w SQL wykonują obliczenia na zestawie wartości. SUM() sumuje wszystkie wartości w kolumnie.',
-                        'hint_2' => 'Wzorzec: SELECT FUNKCJA(kolumna) FROM tabela;',
+                        'validation_regex' => '/SELECT\s+SUM\(amount\).*?FROM\s+sales/msi',
+                        'hint' => 'Funkcje agregujące w SQL wykonują obliczenia na zestawie wartości i grupują w 1 wiersz. SUM() sumuje wszystkie wartości w kolumnie.',
+                        'hint_2' => 'Wzorzec: SELECT SUM(kolumna) FROM nazwa_tabeli;',
                     ],
                 ],
                 [
                     'title' => 'Najlepsi klienci',
-                    'content' => 'Wyświetl user_id oraz sumę wydanych pieniędzy (amount) dla każdego użytkownika. Posortuj malejąco wg wydanej kwoty.',
+                    'content' => 'Analiza zachowań użytkowników wymaga rozbicia zysku dla każdego klienta osobno z wykorzystaniem klauzuli GROUP BY, aby wyciągnąć statystyki tzw. najcenniejszych graczy na platformie.',
                     'exercise' => [
-                        'title' => 'Najlepsi klienci',
-                        'description' => 'Wyświetl user_id oraz sumę wydanych pieniędzy (amount) dla każdego użytkownika. Posortuj malejąco wg wydanej kwoty.',
-                        'initial_code' => "SELECT user_id, SUM(amount) as total\nFROM sales\n-- Dodaj grupowanie i sortowanie",
+                        'title' => 'Identyfikowanie Best Sellers / Top Klienci',
+                        'description' => 'Wyświetl `user_id` oraz sumę kupionych przez nich produktów (amount) dla każdego użytkownika (korzystając z aliasu `total_spent`). Skrypt sortujący musi ustawić ich malejąco wg wydanej kwoty, tak aby klienci wydający najwięcej znależli się na samej górze (DESC).',
+                        'initial_code' => "-- === TABELA: sales ===\n-- Użytkownicy w sklepie i ich pojedyncze wartości koszyka.\n-- Każdy wiersz to pojedynczy paragon.\n\nSELECT \n    user_id, \n    SUM(amount) AS total_spent\nFROM sales\n-- TODO: Zgrupuj wiersze po user_id (żeby złączyć wszystkie ich paragony)\n-- TODO: Następnie posortuj po aliasie total_spent malejąco by widzieć elitarne konta\n\n",
                         'expected_output' => null,
-                        'validation_regex' => '/GROUP\s+BY\s+user_id\s+ORDER\s+BY\s+total\s+DESC/i',
-                        'hint' => 'GROUP BY grupuje wyniki według kolumny. ORDER BY sortuje wyniki — dodaj DESC dla malejąco.',
-                        'hint_2' => 'Dodaj klauzule po FROM sales w odpowiedniej kolejności: najpierw grupowanie, potem sortowanie.',
+                        'validation_regex' => '/GROUP\s+BY\s+user_id\s*ORDER\s+BY\s+total_spent\s+(?:DESC|desc)/msi',
+                        'hint' => 'GROUP BY grupuje wszystkie identyczne wartości z kolumny. ORDER BY sortuje wyniki zestawienia na samym końcu zapytania (dodaj DESC dla malejąco).',
+                        'hint_2' => 'Dodaj dwie linijki pod wpisanym zapytaniem: GROUP BY user_id oraz ORDER BY total_spent DESC;',
                     ],
                 ],
             ]
@@ -366,29 +366,17 @@ class CoursesSeeder extends Seeder
             'images/courses/react.png',
             [
                 [
-                    'title' => 'Lekcja 0: Wstęp do JSX',
-                    'content' => 'JSX to składnia pozwalająca pisać HTML w JavaScript. Każdy tag musi być zamknięty.',
+                    'title' => 'Lekcja 1: Wstęp do JSX i Twój pierwszy tag',
+                    'content' => "React to biblioteka JavaScript służąca do budowania interfejsów użytkownika.\n\nJSX to specjalna składnia w React, która pozwala pisać kod wyglądający jak HTML bezpośrednio w pliku JavaScript. Każdy tag musi być poprawnie zamknięty (np. `<button></button>` lub `<img />`). W React komponent funkcyjny to zwykła funkcja, która musi zwrócić właśnie ten kod JSX.",
                     'exercise' => [
-                        'title' => 'Twój pierwszy tag',
-                        'description' => 'Napisz funkcję zwracającą prosty przycisk z napisem "Start".',
+                        'title' => 'Twój pierwszy tag elementu',
+                        'description' => 'Napisz funkcję komponentu zwracającą prosty przycisk z napisem "Start". Pamiętaj, aby nie stosować cudzysłowów wokół kodu znacznika tak jak robilibyśmy to w zwykłym JS.',
                         'initial_code' => "function Button() {\n  // Zwróć kod HTML (JSX) dla przycisku\n  return \"<button>...</button>\";\n}",
                         'test_code' => "try {\n  const result = Button();\n  console.log(result);\n} catch(e) { console.error(e.message); }",
-                        'expected_output' => '<button>Start</button>',
+                        'validation_regex' => '/return\s*<button>\s*Start\s*<\/button>\s*;?/',
+                        'expected_output' => '{"type":"button","props":{"children":"Start"}}',
                         'hint' => 'W React funkcja komponentu zwraca JSX — składnię przypominającą HTML. Zamiast tekstu w cudzysłowie, zwróć element JSX bezpośrednio.',
-                        'hint_2' => 'Zamień return "tekst" na return <element>tekst</element> — bez cudzysłowu.',
-                    ],
-                ],
-                [
-                    'title' => 'Lekcja 1: Co to jest React?',
-                    'content' => 'React to biblioteka JavaScript służąca do budowania interfejsów użytkownika...',
-                    'exercise' => [
-                        'title' => 'Twój pierwszy komponent',
-                        'description' => 'Stwórz prosty komponent funkcyjny, który zwraca div z tekstem "Hello World".',
-                        'initial_code' => "function HelloWorld() {\n  // Zmień poniższą linię, aby zwracała <div>Hello World</div>\n  return \"<div>...</div>\";\n}",
-                        'test_code' => 'try { console.log(HelloWorld()); } catch(e) { console.error(e.message); }',
-                        'expected_output' => '<div>Hello World</div>',
-                        'hint' => 'Komponent funkcyjny to zwykła funkcja JavaScript, która zwraca element JSX. JSX wygląda jak HTML, ale jest wbudowany bezpośrednio w JavaScript.',
-                        'hint_2' => 'Zwróć element <div> z odpowiednim tekstem wewnątrz — bez cudzysłowów wokół JSX.',
+                        'hint_2' => 'Zamień return "tekst" na return <button>Start</button> — bez cudzysłowu.',
                     ],
                 ],
                 [

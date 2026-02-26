@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import { marked } from 'marked'
 import { useRoute, useRouter } from 'vue-router'
 import MainHeader from '@/components/MainHeader.vue'
 import { useDashboardData } from '@/composables/useDashboardData'
@@ -17,6 +18,11 @@ const { t } = useI18n()
 const articleId = computed(() => route.params.articleId as string)
 const article = ref<NewsArticle | null>(null)
 const isLoading = ref(true)
+
+const parsedContent = computed(() => {
+  if (!article.value?.content) return ''
+  return marked.parse(article.value.content) as string
+})
 
 const navLinksList = computed(() => dashboardData.value?.navLinks ?? [])
 
@@ -75,8 +81,8 @@ const handleBack = () => {
           <div class="w-full h-px bg-strokePrimary/30"></div>
         </header>
 
-        <div class="prose prose-invert max-w-none text-textSecondary leading-relaxed">
-          <div v-html="article.content"></div>
+        <div class="prose prose-invert max-w-none text-textSecondary leading-relaxed article-content">
+          <div v-html="parsedContent"></div>
         </div>
 
         <footer class="pt-8 border-t border-strokePrimary/30">

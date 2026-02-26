@@ -127,6 +127,12 @@ const paginationRange = computed(() => {
   return range
 })
 
+const handleCancelClearModal = () => {
+  isClearModalOpen.value = false
+  adminPassword.value = ''
+  clearError.value = null
+}
+
 onMounted(() => fetchLogs())
 </script>
 
@@ -292,10 +298,7 @@ onMounted(() => fetchLogs())
         </div>
 
         <div class="p-4 border-t border-strokePrimary/30 flex justify-end gap-3 bg-bgSecondary/30">
-          <button
-            class="px-4 py-2 rounded-lg text-sm font-semibold text-textSecondary hover:text-textWhite transition-colors"
-            @click="isClearModalOpen = false; adminPassword = ''; clearError = null"
-          >
+          <button class="px-4 py-2 rounded-lg text-sm font-semibold text-textSecondary hover:text-textWhite transition-colors" @click="handleCancelClearModal">
             {{ t('common.cancel') }}
           </button>
           <button class="px-6 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 flex items-center gap-2" :disabled="isClearing || !adminPassword" @click="handleClearLogs">

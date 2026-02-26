@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -45,11 +44,6 @@ class AuthTest extends TestCase
 
     public function test_register_requires_all_fields(): void
     {
-        // No mock needed as validation fails before captcha (if fields missing)
-        // But code validates captcha token presence first?
-        // 'recaptcha_token' => 'required' in validation.
-        // If token provided, it validates. Here we miss required fields.
-
         $response = $this->postJson('/api/auth/register', []);
 
         $response->assertStatus(422)
@@ -58,12 +52,6 @@ class AuthTest extends TestCase
 
     public function test_register_rejects_duplicate_email(): void
     {
-        // Validation for unique email happens BEFORE captcha check?
-        // Request validation runs all rules. Unique check is DB query. Recaptcha rule is custom.
-        // If standard validation fails, it throws ValidationException.
-        // Recaptcha is verified manually AFTER $request->validate().
-        // So we don't need mock if validation fails!
-        
         $this->createUserWithProfile(['email' => 'taken@example.com']);
 
         $response = $this->postJson('/api/auth/register', [
@@ -115,10 +103,6 @@ class AuthTest extends TestCase
             'password' => 'wrong',
             'recaptcha_token' => 'test-token',
         ]);
-
-        // Auth::attempt fails. Captcha MUST PASS FIRST because verifyRecaptcha is called BEFORE Auth::attempt.
-        // See AuthController lines 82 vs 88.
-        // So we need mock.
 
         $response->assertStatus(422)
             ->assertJsonValidationErrors(['email']);

@@ -36,7 +36,7 @@ class Recaptcha implements ValidationRule
                 'hostname' => $result['hostname'] ?? '',
                 'error-codes' => $result['error-codes'] ?? [],
             ]);
-             $fail('Weryfikacja reCAPTCHA nie powiodła się. Spróbuj ponownie.');
+            $fail('Weryfikacja reCAPTCHA nie powiodła się. Spróbuj ponownie.');
         }
     }
 }

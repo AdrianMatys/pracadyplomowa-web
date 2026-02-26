@@ -73,7 +73,7 @@ export const useAuth = () => {
       await api.post('/logout')
       notify('success', t('common.notifications.logoutSuccess'))
     } catch {
-      // ignore
+      // network failure during logout is acceptable
     } finally {
       isLoggedIn.value = false
       user.value = null
@@ -86,7 +86,7 @@ export const useAuth = () => {
       const response = await api.get('/user')
       user.value = response.data
     } catch {
-      // ignore
+      // silently ignore refresh failures
     }
   }
 

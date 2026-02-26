@@ -33,7 +33,6 @@ const shouldShowHint2 = computed(() => props.failedAttempts >= 10 && hasHint2.va
 const attemptsToHint1 = computed(() => Math.max(0, 5 - props.failedAttempts))
 const attemptsToHint2 = computed(() => Math.max(0, 10 - props.failedAttempts))
 
-
 const toggleOpen = () => {
   isOpen.value = !isOpen.value
 }
@@ -43,7 +42,6 @@ const toggleOpen = () => {
   <div class="fixed bottom-1/4 right-0 z-50 flex flex-col items-end pointer-events-none">
     <div v-if="isOpen" class="animate-pop-in relative right-4 mb-4 mr-8 max-w-xs rounded-[2rem] border-2 border-black bg-white p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
       <div class="space-y-3 font-sans text-black">
-
         <div v-if="shouldShowHint1" class="space-y-1">
           <span class="text-xs font-black uppercase tracking-wider text-blue-600 block mb-1">
             {{ t('hint.hint1') }}

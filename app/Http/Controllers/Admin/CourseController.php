@@ -18,7 +18,7 @@ class CourseController extends Controller
     {
         $files = glob(public_path('images/courses/*'));
         $images = array_map(function ($file) {
-            return '/images/courses/' . basename($file);
+            return '/images/courses/'.basename($file);
         }, $files);
 
         return response()->json($images);
@@ -39,9 +39,9 @@ class CourseController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('images/courses'), $filename);
-            $validated['image_path'] = 'images/courses/' . $filename;
+            $validated['image_path'] = 'images/courses/'.$filename;
         } elseif ($request->filled('existing_image_path')) {
             $validated['image_path'] = $request->input('existing_image_path');
         }
@@ -86,9 +86,9 @@ class CourseController extends Controller
             }
 
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time().'_'.$file->getClientOriginalName();
             $file->move(public_path('images/courses'), $filename);
-            $validated['image_path'] = 'images/courses/' . $filename;
+            $validated['image_path'] = 'images/courses/'.$filename;
         } elseif ($request->filled('existing_image_path')) {
             $validated['image_path'] = $request->input('existing_image_path');
         }

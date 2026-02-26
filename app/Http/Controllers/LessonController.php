@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lesson;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
@@ -19,7 +19,7 @@ class LessonController extends Controller
 
         $user = $request->user('sanctum');
         if (! $user && $lesson->order > 0) {
-             return response()->json(['message' => 'Unauthorized. This lesson requires enrollment.'], 403);
+            return response()->json(['message' => 'Unauthorized. This lesson requires enrollment.'], 403);
         }
 
         return response()->json($lesson);

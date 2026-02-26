@@ -7,7 +7,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -21,7 +20,7 @@ class AuthController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255', new \App\Rules\NicknameNotProfane()],
+            'name' => ['required', 'string', 'max:255', new \App\Rules\NicknameNotProfane],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'recaptcha_token' => ['required', 'string', new \App\Rules\Recaptcha('register')],
@@ -64,7 +63,6 @@ class AuthController extends Controller
             ]);
         }
 
-        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         if (! $user->hasVerifiedEmail()) {
@@ -73,6 +71,7 @@ class AuthController extends Controller
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
             }
+
             return response()->json([
                 'message' => 'Email nie został potwierdzony.',
                 'email_unverified' => true,
@@ -110,7 +109,7 @@ class AuthController extends Controller
         }
 
         Auth::guard('web')->logout();
-        
+
         if ($request->hasSession()) {
             $request->session()->invalidate();
             $request->session()->regenerateToken();

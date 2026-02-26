@@ -189,6 +189,21 @@ const deleteUser = async () => {
   }
 }
 
+const handleBanAndClose = (user: User) => {
+  confirmBan(user)
+  closeDropdown()
+}
+
+const handleSaveLevelAndClose = (user: User) => {
+  saveLevel(user)
+  closeDropdown()
+}
+
+const handleDeleteAndClose = (user: User) => {
+  confirmDelete(user)
+  closeDropdown()
+}
+
 onMounted(() => fetchUsers())
 </script>
 
@@ -286,25 +301,13 @@ onMounted(() => fetchUsers())
                     <IconDotsVertical class="h-5 w-5" />
                   </button>
                   <div v-if="openDropdown === user.id" class="absolute right-0 bottom-full mb-1 w-40 bg-bgPrimary border border-strokePrimary/30 rounded-lg shadow-xl z-20 py-1">
-                    <button
-                      :disabled="user.id === currentUser?.id"
-                      :class="['w-full text-left px-4 py-2 text-xs font-bold transition-colors disabled:opacity-50', user.is_banned ? 'text-green-500 hover:bg-green-500/10' : 'text-amber-500 hover:bg-amber-500/10']"
-                      @click="confirmBan(user); closeDropdown()"
-                    >
+                    <button :disabled="user.id === currentUser?.id" :class="['w-full text-left px-4 py-2 text-xs font-bold transition-colors disabled:opacity-50', user.is_banned ? 'text-green-500 hover:bg-green-500/10' : 'text-amber-500 hover:bg-amber-500/10']" @click="handleBanAndClose(user)">
                       {{ user.is_banned ? t('admin.users.unban') : t('admin.users.ban') }}
                     </button>
-                    <button
-                      v-if="hasLevelChanged(user)"
-                      class="w-full text-left px-4 py-2 text-xs font-bold text-blue-500 hover:bg-blue-500/10 transition-colors"
-                      @click="saveLevel(user); closeDropdown()"
-                    >
+                    <button v-if="hasLevelChanged(user)" class="w-full text-left px-4 py-2 text-xs font-bold text-blue-500 hover:bg-blue-500/10 transition-colors" @click="handleSaveLevelAndClose(user)">
                       {{ t('admin.common.save') }}
                     </button>
-                    <button
-                      :disabled="user.id === currentUser?.id"
-                      class="w-full text-left px-4 py-2 text-xs font-bold text-red-500 hover:bg-red-500/10 transition-colors disabled:opacity-50"
-                      @click="confirmDelete(user); closeDropdown()"
-                    >
+                    <button :disabled="user.id === currentUser?.id" class="w-full text-left px-4 py-2 text-xs font-bold text-red-500 hover:bg-red-500/10 transition-colors disabled:opacity-50" @click="handleDeleteAndClose(user)">
                       {{ t('admin.common.delete') }}
                     </button>
                   </div>

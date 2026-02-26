@@ -43,7 +43,7 @@ const mapCourse = (course: any): CourseCard => ({
       editorLabel: exercise?.editor_label,
       exerciseId: exercise?.id ? String(exercise.id) : undefined,
       hint: exercise?.hint,
-      hint2: exercise?.hint2,
+      hint2: exercise?.hint_2,
       previewType: exercise?.preview_type || 'none',
     }
   }),

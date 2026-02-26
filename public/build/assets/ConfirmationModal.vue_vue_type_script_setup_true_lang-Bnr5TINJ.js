@@ -1,0 +1,37 @@
+import { d as r, a as l, m as c, s as d, b as e, t as o, n as m, o as x } from './vendor-BOwXO-1K.js'
+const f = { class: 'bg-bgPrimary border border-strokePrimary rounded-2xl w-full max-w-md shadow-2xl overflow-hidden transform transition-all' },
+  h = { class: 'p-6' },
+  b = { class: 'text-xl font-bold text-textWhite mb-2' },
+  p = { class: 'text-textSecondary text-sm mb-6' },
+  u = { class: 'flex justify-end gap-3' },
+  k = r({
+    __name: 'ConfirmationModal',
+    props: { isOpen: { type: Boolean }, title: {}, message: {}, confirmText: {}, cancelText: {}, isDanger: { type: Boolean } },
+    emits: ['confirm', 'cancel', 'update:isOpen'],
+    setup(t, { emit: a }) {
+      const s = a,
+        i = () => {
+          ;(s('confirm'), s('update:isOpen', !1))
+        },
+        n = () => {
+          ;(s('cancel'), s('update:isOpen', !1))
+        }
+      return (g, y) =>
+        t.isOpen
+          ? (x(),
+            l('div', { key: 0, class: 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm', onClick: d(n, ['self']) }, [
+              e('div', f, [
+                e('div', h, [
+                  e('h3', b, o(t.title), 1),
+                  e('p', p, o(t.message), 1),
+                  e('div', u, [
+                    e('button', { class: 'px-4 py-2 rounded-lg text-textSecondary hover:text-textWhite font-semibold transition-colors', onClick: n }, o(t.cancelText || 'Anuluj'), 1),
+                    e('button', { class: m(['px-4 py-2 rounded-lg font-bold text-textWhite transition-all', t.isDanger ? 'bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/20' : 'bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20']), onClick: i }, o(t.confirmText || 'Potwierdź'), 3),
+                  ]),
+                ]),
+              ]),
+            ]))
+          : c('', !0)
+    },
+  })
+export { k as _ }

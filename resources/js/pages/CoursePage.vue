@@ -15,7 +15,6 @@ import IconCheck from '@/icons/IconCheck.vue'
 import IconArrowLeft from '@/icons/IconArrowLeft.vue'
 import IconAlert from '@/icons/IconAlert.vue'
 import { fetchCourseById } from '@/services/dataService'
-import api from '@/services/api'
 
 const route = useRoute()
 const router = useRouter()
@@ -198,7 +197,7 @@ const handleJoinCourse = async () => {
       totalLessons: courseLessons.value.length,
     })
   } catch {
-    // ignore
+    // enrollment errors are surfaced via useProfileData
   }
 }
 
@@ -226,9 +225,8 @@ const handleConfirmLeaveCourse = async () => {
 
   try {
     await leaveCourse(courseId.value)
-    // isJoined will be updated automatically by the watcher on userCourseProgress
   } catch {
-    // ignore
+    // leave errors are surfaced via useProfileData
   } finally {
     isLeaveDialogOpen.value = false
   }

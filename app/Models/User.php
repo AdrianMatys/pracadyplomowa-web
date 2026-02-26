@@ -88,7 +88,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendEmailVerificationNotification(): void
     {
-        $this->notify(new \App\Notifications\VerifyEmailNotification());
+        $this->notify(new \App\Notifications\VerifyEmailNotification);
     }
 
     public function profile(): HasOne
@@ -130,8 +130,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         if (! $this->achievements()->where('achievement_id', $achievementId)->exists()) {
             $this->achievements()->attach($achievementId);
+
             return true;
         }
+
         return false;
     }
 }

@@ -175,14 +175,10 @@ const selectExistingImage = (image: string) => {
 
 const confirmImageSelection = () => {
   if (selectedExistingImage.value) {
-    // Set courseForm.image to null because we are using an existing path
     courseForm.value.image = null
-    // Update the visual preview immediately
     if (course.value) {
       course.value.image_path = selectedExistingImage.value
     }
-    // We need a way to tell the backend we chose an existing image.
-    // We can use a new field 'existing_image_path' in the form data
     showImageModal.value = false
   }
 }
@@ -214,7 +210,7 @@ const updateCourse = async () => {
     notify('error', t('admin.courses.notifications.updateError'))
   } finally {
     isSaving.value = false
-    selectedExistingImage.value = null // Reset after save
+    selectedExistingImage.value = null
   }
 }
 

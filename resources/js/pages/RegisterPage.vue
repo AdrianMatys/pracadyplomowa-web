@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import MainHeader from '@/components/MainHeader.vue'
 import { useAuth } from '@/composables/useAuth'
 import { useDashboardData } from '@/composables/useDashboardData'
@@ -10,7 +9,6 @@ import IconSpinner from '@/icons/IconSpinner.vue'
 import IconEye from '@/icons/IconEye.vue'
 import IconEyeOff from '@/icons/IconEyeOff.vue'
 
-const router = useRouter()
 const { register } = useAuth()
 const { dashboardData } = useDashboardData()
 const { t } = useI18n()
@@ -149,7 +147,7 @@ const handleRegisterSubmit = async () => {
               <h2 class="text-2xl font-bold tracking-tight text-white mb-2">{{ t('register.verifyEmailTitle') }}</h2>
               <p class="text-textSecondary">{{ t('register.verifyEmailMessage') }}</p>
             </div>
-            
+
             <div class="pt-4 border-t border-strokePrimary/30">
               <RouterLink :to="{ name: 'login' }" class="flex w-full items-center justify-center rounded-full bg-textPrimary px-6 py-3 text-sm font-semibold text-bgPrimary transition hover:opacity-90">
                 {{ t('register.goToLogin') }}
