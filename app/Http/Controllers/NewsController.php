@@ -14,7 +14,7 @@ class NewsController extends Controller
         $cacheKey = "news_index_{$search}_{$type}";
 
         $news = \Illuminate\Support\Facades\Cache::remember($cacheKey, now()->addMinutes(10), function () use ($search, $type) {
-            $query = Article::with(['user.profile', 'tags'])
+            $query = Article::with(['user.profile:id,user_id,nickname', 'tags'])
                 ->where('is_published', true);
 
             if ($search) {

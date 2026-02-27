@@ -11,7 +11,7 @@ class NewsController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $query = Article::with(['user.profile', 'tags'])->orderBy('id', 'desc');
+        $query = Article::with(['user.profile:id,user_id,nickname', 'tags'])->orderBy('id', 'desc');
 
         if ($request->has('search')) {
             $search = $request->get('search');

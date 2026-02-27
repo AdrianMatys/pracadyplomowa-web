@@ -348,6 +348,7 @@ export const translations = {
         createdAt: 'Data rejestracji',
         date: 'Data',
         type: 'Typ',
+        error: 'Wystąpił błąd',
         notifications: {
           success: 'Sukces',
           error: 'Wystąpił błąd',
@@ -853,6 +854,7 @@ export const translations = {
         createdAt: 'Created at',
         date: 'Date',
         type: 'Type',
+        error: 'An error occurred',
         notifications: {
           success: 'Success',
           error: 'An error occurred',
