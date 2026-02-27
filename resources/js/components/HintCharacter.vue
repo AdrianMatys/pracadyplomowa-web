@@ -13,6 +13,10 @@ const { t } = useI18n()
 const isOpen = ref(false)
 
 const characterImage = computed(() => {
+  if (isOpen.value) {
+    return '/images/char_hint.png'
+  }
+
   switch (props.state) {
     case 'checking':
       return '/images/char_checking.png'

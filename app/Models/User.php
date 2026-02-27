@@ -83,6 +83,9 @@ class User extends Authenticatable implements MustVerifyEmail
             $user->articles()->delete();
             $user->achievements()->detach();
             $user->tokens()->delete();
+
+            \Illuminate\Support\Facades\DB::table('sessions')->where('user_id', $user->id)->delete();
+            \Illuminate\Support\Facades\DB::table('logs')->where('user_id', $user->id)->delete();
         });
     }
 

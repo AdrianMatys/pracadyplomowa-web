@@ -150,8 +150,6 @@ Dobre nazewnictwo to jedna z najtrudniejszych umiejętności w programowaniu. Zr
 Najważniejsza jest **spójność**. Jeśli cały projekt używa `camelCase`, nie używaj `snake_case` w swoich plikach. Trzymaj się konwencji języka i frameworka - PHPstanowi `snake_case` dla metod, JavaScript preferuje `camelCase`.
 MD,
             ],
-
-            // --- CATALOGING / ORGANIZATION ---
             [
                 'title' => 'Dobre praktyki organizacji struktury projektu',
                 'type' => 'article',
@@ -221,8 +219,6 @@ Traktuj PR (Pull Request) jako narzędzie do nauki, nie do oceniania. Komentarze
 Nigdy nie commituj plików konfiguracyjnych ze środowiska (`.env`), katalogów z zależnościami (`node_modules/`, `vendor/`) ani artefaktów budowania.
 MD,
             ],
-
-            // --- DATABASES ---
             [
                 'title' => 'Normalizacja baz danych - od 1NF do 3NF',
                 'type' => 'article',
@@ -284,8 +280,6 @@ Indeks to dodatkowa struktura danych (zwykle B-drzewo), która przyspiesza wyszu
 Używaj `EXPLAIN ANALYZE` w PostgreSQL lub `EXPLAIN` w MySQL, by zobaczyć, jak baza realizuje zapytanie i czy korzysta z indeksów.
 MD,
             ],
-
-            // --- FRONTEND ---
             [
                 'title' => 'Dostępność (a11y) w aplikacjach webowych - od czego zacząć',
                 'type' => 'article',
@@ -348,8 +342,6 @@ Google mierzy trzy kluczowe metryki:
 Dla stron z dużą ilością treści rozważ SSR (Nuxt, Next.js), by przyspieszyć czas do pierwszego wyrenderowania i poprawić SEO.
 MD,
             ],
-
-            // --- PHP / LARAVEL ---
             [
                 'title' => 'Wzorzec Repository w Laravel - kiedy i jak stosować',
                 'type' => 'article',

@@ -72,7 +72,6 @@ const isInformational = computed(() => currentLesson.value?.order === 0)
 const characterState = computed<'idle' | 'checking' | 'hint'>(() => {
   if (isChecking.value) return 'checking'
 
-  if (failedAttempts.value >= 5) return 'hint'
   return 'idle'
 })
 

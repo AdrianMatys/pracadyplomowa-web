@@ -1,11 +1,25 @@
 import { ref } from 'vue'
+import api from '@/services/api'
+import { useAuth } from '@/composables/useAuth'
 
 const isDark = ref(true)
 
 export function useTheme() {
-  const toggleTheme = () => {
+  const toggleTheme = async () => {
     isDark.value = !isDark.value
     updateTheme()
+
+    // Zapis w bazie danych, jeśli użytkownik jest zalogowany
+    const { isLoggedIn } = useAuth()
+    if (isLoggedIn.value) {
+      try {
+        await api.put('/api/users/me', {
+          theme: isDark.value ? 'dark' : 'light',
+        })
+      } catch (e) {
+        console.error('Błąd podczas zapisu motywu w bazie danych', e)
+      }
+    }
   }
 
   const updateTheme = () => {

@@ -35,6 +35,10 @@ class UserController extends Controller
         $user->is_banned = ! $user->is_banned;
         $user->save();
 
+        if ($user->is_banned) {
+            \Illuminate\Support\Facades\DB::table('sessions')->where('user_id', $user->id)->delete();
+        }
+
         $target = $user->profile->nickname ?? $user->email;
         $actionPl = $user->is_banned ? 'zablokował' : 'odblokował';
         $this->logAction('user_'.($user->is_banned ? 'banned' : 'unbanned'), "Admin {$actionPl} użytkownika [{$target}] (ID: {$user->id})", ['target_user_id' => $user->id, 'new_status' => $user->is_banned ? 'banned' : 'active']);
